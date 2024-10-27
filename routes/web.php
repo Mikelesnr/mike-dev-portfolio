@@ -7,10 +7,6 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::get('/skills', function () {
-    return Inertia::render('Skills');
-});
-
 Route::get('/work', function () {
     return Inertia::render('Work');
 });

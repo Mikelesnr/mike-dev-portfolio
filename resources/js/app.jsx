@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import NavBar from "./Components/NavBar";
+import Footer from "./Components/Footer";
 
 createInertiaApp({
     resolve: (name) =>
@@ -15,6 +16,7 @@ createInertiaApp({
             <div>
                 <NavBar />
                 <App {...props} />
+                <Footer />
             </div>
         );
     },
