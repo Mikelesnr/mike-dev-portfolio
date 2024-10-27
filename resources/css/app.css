@@ -4,7 +4,7 @@
 
 :root {
     --text-color: rgb(195, 230, 221);
-    --div-color: #0a1311;
+    --div-color: #0b1b18;
     --btn-primary: #d9ee60;
     --btn-secondary: #b6c9b6;
 
@@ -17,6 +17,7 @@
     --nav-hover-background-color: #f8f2dc;
 }
 
+/* universal css start */
 body {
     font-family: "Roboto", sans-serif;
     background-image: var(--background-image-url);
@@ -43,6 +44,51 @@ h1 {
 h2 {
     font-size: 20px;
 }
+
+.section {
+    padding: 50px 0;
+    border-radius: 20px;
+    width: 80%;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 90%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 0;
+    border-radius: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.body-h2 {
+    padding: 5px;
+    font-size: 50px;
+}
+
+.body-h3 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.info {
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* universal caa end */
 
 /* nav start */
 
@@ -103,9 +149,10 @@ h2 {
 /* hero start */
 
 .hero {
-    height: 400px;
     display: flex;
     flex-direction: row;
+    height: fit-content;
+    min-height: 350px;
 }
 
 .into-container,
@@ -142,7 +189,7 @@ h2 {
 /* buttons start*/
 .btn {
     border: none;
-    color: white;
+    color: var(--div-color);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -176,6 +223,22 @@ h2 {
     margin: 10px;
 }
 
+.btn-download-cv {
+    background-color: var(--div-color);
+    color: var(--btn-secondary);
+    font-weight: 900;
+    margin: 10px;
+    box-shadow: 0 8px 16px 0 rgba(9, 39, 33, 0.1),
+        0 6px 20px 0 rgba(11, 27, 24, 0.19);
+}
+
+.btn-projects {
+    background-color: var(--btn-secondary);
+    color: var(--div-color);
+    font-weight: 900;
+    margin: 10px;
+}
+
 .work-btn {
     background-color: var(--btn-secondary);
     color: var(--div-color);
@@ -200,7 +263,142 @@ h2 {
 
 /* buttons end */
 
+/* about start */
+.about-me-section {
+    background-color: var(--btn-secondary);
+    color: var(--div-color);
+}
+
+.about-me-content {
+    background-color: var(--div-color);
+}
+
+.profile-info {
+    background-color: var(--btn-secondary);
+    color: var(--div-color);
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+/* about end */
+
+/* skills start */
+.skills-section {
+    background-color: var(--div-color);
+    color: var(--btn-secondary);
+}
+
+.skills-content {
+    background-color: var(--btn-secondary);
+}
+
+.skills-info {
+    background-color: var(--div-color);
+    color: var(--btn-secondary);
+}
+
+/* skills end */
+
 /* Responsive Styles */
+
+/* 1800px start */
+@media (max-width: 1800px) {
+    /* hero start */
+
+    .into-container h2,
+    .into-container p {
+        font-size: 45px;
+    }
+
+    .myh1 {
+        font-size: 55px;
+    }
+    /* hero end */
+}
+
+/* 1574px start */
+@media (max-width: 1574px) {
+    /* hero start */
+
+    .into-container h2,
+    .into-container p {
+        font-size: 40px;
+    }
+
+    .myh1 {
+        font-size: 50px;
+    }
+    /* hero end */
+}
+
+/* 1413px start */
+@media (max-width: 1413px) {
+    /* hero start */
+
+    .into-container h2,
+    .into-container p {
+        font-size: 35px;
+    }
+
+    .myh1 {
+        font-size: 45px;
+    }
+    /* hero end */
+}
+
+/* 1283px start */
+@media (max-width: 1283px) {
+    /* hero start */
+    .into-container,
+    .profile-image-container {
+        height: fit-content;
+    }
+
+    .into-container h2,
+    .into-container p {
+        font-size: 30px;
+    }
+
+    .myh1 {
+        font-size: 40px;
+    }
+    /* hero end */
+}
+
+/* 1155px start */
+@media (max-width: 1155px) {
+    /* hero start */
+
+    .into-container h2,
+    .into-container p {
+        font-size: 25px;
+    }
+
+    .myh1 {
+        font-size: 35px;
+    }
+    /* hero end */
+}
+
+/* 990px start */
+@media (max-width: 990px) {
+    /* hero start */
+
+    .into-container h2,
+    .into-container p {
+        font-size: 20px;
+    }
+
+    .myh1 {
+        font-size: 30px;
+    }
+    /* hero end */
+}
+
+/* 768px start */
+
 @media (max-width: 768px) {
     /* nav start */
 
@@ -223,4 +421,29 @@ h2 {
         display: flex;
     }
     /* nav end */
+
+    /* hero start */
+    .hero {
+        flex-direction: column;
+    }
+
+    .into-container {
+        width: 100%;
+    }
+
+    .profile-image-container {
+        width: 100%;
+    }
+
+    .myh1,
+    .into-container h2,
+    .into-container p {
+        padding: 5px;
+        font-size: 20px;
+    }
+
+    .myh1 {
+        font-size: 35px;
+    }
+    /* hero end */
 }
