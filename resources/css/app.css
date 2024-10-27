@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 :root {
     --text-color: rgb(195, 230, 221);
@@ -299,6 +299,38 @@ h2 {
     color: var(--btn-secondary);
 }
 
+.skills-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.skill-category {
+    flex: 1;
+    margin: 20px;
+}
+
+.skill-category h3 {
+    color: var(--btn-secondary);
+    margin-bottom: 20px;
+}
+
+.skill {
+    margin-bottom: 15px;
+}
+
+.skill span {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--btn-secondary);
+}
+
+.skill-bar {
+    height: 10px;
+    background-color: #d9ee60;
+    border-radius: 5px;
+}
+
 /* skills end */
 
 /* Responsive Styles */
@@ -400,6 +432,64 @@ h2 {
 /* 768px start */
 
 @media (max-width: 768px) {
+    /* start universal css */
+    .body-h2 {
+        font-size: 30px;
+    }
+    .body-h3 {
+        font-size: 25px;
+    }
+
+    .info {
+        width: 95%;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .content {
+        width: 95%;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+    .section {
+        width: 95%;
+        margin: auto 30px;
+        padding: 20px 0;
+    }
+    /* end universal css */
+
+    /*  start hero */
+    .hero {
+        display: block;
+    }
+
+    .intro-container,
+    .profile-image-container {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .myh1,
+    .into-container h2,
+    .into-container p {
+        padding: 5px 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .into .profile-image {
+        width: 80%;
+    }
+
+    /* end hero */
+
     /* nav start */
 
     .navbar-links {
