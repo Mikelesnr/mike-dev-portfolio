@@ -1,88 +1,106 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class Work extends Component {
-    state = {};
+    state = {
+        projects: [],
+        currentPage: 1,
+        lastPage: 1,
+    };
+
+    componentDidMount() {
+        this.fetchProjects(this.state.currentPage);
+    }
+
+    fetchProjects = async (page) => {
+        try {
+            const response = await axios.get(
+                `http://127.0.0.1:8000/projects?page=${page}`
+            );
+            this.setState({
+                projects: response.data.data,
+                currentPage: response.data.current_page,
+                lastPage: response.data.last_page,
+            });
+        } catch (error) {
+            console.error("Error fetching projects:", error);
+        }
+    };
+
+    handlePageChange = (page) => {
+        this.fetchProjects(page);
+    };
+
     render() {
+        const { projects, currentPage, lastPage } = this.state;
+
         return (
             <section id="Skills" className="section projects-section">
-                <div className=" container container-skills">
+                <div className="container container-skills">
                     <h2 className="body-h2">My Projects</h2>
-                    <div className="content skills-content">
-                        <div className="info project-info">
-                            <h3 className="body-h3">
-                                <a
-                                    href="https://www.summitguesthouse.org/"
-                                    target="blank"
+                    <div
+                        className="content skills-content"
+                        style={{ display: "flex", flexDirection: "column" }}
+                    >
+                        {Array.isArray(projects) &&
+                            projects.map((project) => (
+                                <div
+                                    key={project.id}
+                                    className="info project-info"
                                 >
-                                    Summit Guesthouse
-                                </a>
-                            </h3>
-                            <p className="body-p">
-                                Website built for Summit guessthouse in
-                                Beitbridge Zimbabwe.
-                            </p>
-                            <p>
-                                Project built with Nextjs, Prisma Studio ORM and
-                                MySql.
-                            </p>
-                            <p>
-                                Project deployed on bare linux server with ssh
-                                git prodution connection for updates.
-                            </p>
-                            <p>
-                                Depolyed with Nginx Server and PM2 Restart Linux
-                                script on server.
-                            </p>
-                            <div className="skill-category">
-                                <iframe
-                                    src="https://www.summitguesthouse.org/"
-                                    class="custom-iframe"
-                                    title="Summit Guesthouse"
-                                ></iframe>
-                            </div>
-                        </div>
-                        <div className="info project-info">
-                            <h3 className="body-h3">
-                                <a
-                                    href="https://mikelesnr.github.io/wdd131/project/"
-                                    target="blank"
-                                >
-                                    Gears For Hire
-                                </a>
-                            </h3>
-                            <p className="body-p">
-                                Website built for WDD 131 Final Project At
-                                Brigham Young University.
-                            </p>
-                            <p>
-                                Project built with Nextjs, Prisma Studio ORM and
-                                MySql
-                            </p>
-                            <p>
-                                Project deployed on bare linux server with ssh
-                                git prodution connection for updates
-                            </p>
-                            <p>
-                                Depolyed with Nginx Server and PM2 Restart Linux
-                                script on server
-                            </p>
-                            <div className="skill-category">
-                                <iframe
-                                    src="https://mikelesnr.github.io/wdd131/project/"
-                                    class="custom-iframe"
-                                    title="Gears For Hire"
-                                ></iframe>
-                            </div>
-
-                            <div className="buttons">
-                                <a href="/contact" className="hire-btn btn">
-                                    Hire Me
-                                </a>
-                                <a href="/" className="work-btn btn">
-                                    Home
-                                </a>
-                            </div>
-                        </div>
+                                    <h3 className="body-h3">
+                                        <a
+                                            href={project.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {project.name}
+                                        </a>
+                                    </h3>
+                                    <p className="body-p">
+                                        <strong>Description: </strong>{" "}
+                                        {project.description}
+                                    </p>
+                                    <p>
+                                        <strong>Tech Stack: </strong>{" "}
+                                        {project.techstack}
+                                    </p>
+                                    <p>
+                                        <strong>Deployment: </strong>{" "}
+                                        {project.deployment}
+                                    </p>
+                                    <div className="skill-category">
+                                        <iframe
+                                            src={project.url}
+                                            className="custom-iframe"
+                                            title={project.name}
+                                        ></iframe>
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
+                    <div className="pagination buttons">
+                        <button
+                            onClick={() =>
+                                this.handlePageChange(currentPage - 1)
+                            }
+                            disabled={currentPage === 1}
+                            className="btn btn-projects"
+                        >
+                            Prev
+                        </button>
+                        <span>
+                            Page {currentPage} of {lastPage}
+                        </span>
+                        <button
+                            onClick={() =>
+                                this.handlePageChange(currentPage + 1)
+                            }
+                            disabled={currentPage === lastPage}
+                            className="btn btn-projects"
+                        >
+                            Next
+                        </button>
                     </div>
                 </div>
             </section>

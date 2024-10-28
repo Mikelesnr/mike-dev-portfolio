@@ -1,6 +1,6 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 :root {
     --text-color: rgb(195, 230, 221);
@@ -373,7 +373,7 @@ h2 {
 
 .skill-bar {
     height: 10px;
-    background-color: #d9ee60;
+    background-color: var(--btn-secondary);
     border-radius: 5px;
 }
 
