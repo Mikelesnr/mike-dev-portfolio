@@ -69,7 +69,7 @@ class Work extends Component {
                                         <strong>Deployment: </strong>{" "}
                                         {project.deployment}
                                     </p>
-                                    <div className="skill-category">
+                                    <div>
                                         <iframe
                                             src={project.url}
                                             className="custom-iframe"
