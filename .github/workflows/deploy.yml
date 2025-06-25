@@ -23,33 +23,33 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            set -e
+            set -e  # Stop script on first error
 
             cd /var/www/portfolio
 
-            echo "🔄 Fetching latest code..."
+            echo "Fetching latest code..."
             git fetch origin
             git reset --hard origin/main
 
-            echo "📦 Installing PHP dependencies..."
+            echo "Installing PHP dependencies..."
             composer install --no-dev --optimize-autoloader
 
-            echo "⚙️ Running Laravel commands..."
+            echo "Running Laravel commands..."
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
 
-            echo "🛠️ Building React frontend..."
+            echo "Building React frontend..."
             npm install
             npm run build
 
-            echo "🔐 Setting permissions..."
+            echo "Setting permissions..."
             sudo chown -R www-data:www-data .
             sudo chmod -R 755 storage
             sudo chmod -R 755 bootstrap/cache
 
-            echo "🚀 Restarting services..."
+            echo "Restarting services..."
             sudo systemctl restart php8.3-fpm
             sudo systemctl restart nginx
 
