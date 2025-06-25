@@ -10,4 +10,8 @@ export default defineConfig({
         }),
         react(),
     ],
+    build: {
+        outDir: "public/build", // 👈 Laravel will serve from here
+        emptyOutDir: true,
+    },
 });
