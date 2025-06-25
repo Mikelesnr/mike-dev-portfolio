@@ -12,7 +12,7 @@
     <div class="container mx-auto py-8">
         <h1 class="text-2xl font-bold mb-4">Edit Project</h1>
         <div class="bg-white p-6 rounded shadow-md">
-            <form action="{{ route('projects.update', $project->id) }}" method="POST">
+            <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-4">

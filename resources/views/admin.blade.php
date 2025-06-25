@@ -21,7 +21,7 @@
         <!-- Add Project Form -->
         <div class="bg-white p-6 rounded shadow-md mb-8">
             <h2 class="text-xl font-bold mb-4">Add New Project</h2>
-            <form action="{{ route('projects.store') }}" method="POST">
+            <form action="{{ route('admin.projects.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700">Name</label>
@@ -71,12 +71,12 @@
                         <td class="py-2 px-4 border-b">{{ $project->techstack }}</td>
                         <td class="py-2 px-4 border-b">{{ $project->deployment }}</td>
                         <td class="py-2 px-4 border-b">
-                            <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="inline-block">
+                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
                             </form>
-                            <a href="{{ route('projects.edit', $project->id) }}"
+                            <a href="{{ route('admin.projects.edit', $project->id) }}"
                                 class="bg-yellow-500 text-white px-4 py-2 rounded ml-2">Edit</a>
                         </td>
                     </tr>

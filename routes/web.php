@@ -5,27 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectController;
 
-// inertia route for front end
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+// ✅ Inertia frontend routes
+Route::get('/', fn () => Inertia::render('Home'));
+Route::get('/work', fn () => Inertia::render('Work'));
+Route::get('/contact', fn () => Inertia::render('Contact'));
 
-Route::get('/work', function () {
-    return Inertia::render('Work');
-});
+// ✅ Public API for frontend (read-only)
+Route::apiResource('projects', ProjectController::class)->only(['index', 'show']);
 
-Route::get('/contact', function () {
-    return Inertia::render('Contact');
-});
-
-//populate frontend projects page
-Route::apiResource('projects', ProjectController::class);
-
-// blade routes for back end
-
-//admin view all
+// ✅ Blade/admin backend routes
 Route::get('/admin', [ProjectController::class, 'adminIndex'])->name('admin.index');
-Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
-Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
-Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projects.update');
-Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+Route::post('/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
+Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('admin.projects.edit');
+Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('admin.projects.update');
+Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
