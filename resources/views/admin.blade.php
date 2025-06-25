@@ -77,7 +77,7 @@
                                 <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
                             </form>
                             <a href="{{ route('admin.projects.edit', $project->id) }}"
-                                class="bg-yellow-500 text-white px-4 py-2 rounded ml-2">Edit</a>
+                                class="bg-green-500 text-white px-4 py-2 rounded ml-2">Edit</a>
                         </td>
                     </tr>
                 @endforeach
