@@ -1,4 +1,4 @@
-name: Deploy to VPS
+name: Deploy
 
 on:
   push:
@@ -8,7 +8,18 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
       - name: Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
@@ -16,6 +27,7 @@ jobs:
 
             cd /home/mikelesnr/portfolio
 
+            # Trust this repo to avoid Git safe directory errors
             git config --global --add safe.directory /home/mikelesnr/portfolio
 
             echo "🔄 Fetching latest code..."
@@ -36,8 +48,9 @@ jobs:
             npm run build
 
             echo "🔐 Setting permissions..."
-            chmod -R ug+rwX storage bootstrap/cache
-            find storage bootstrap/cache -type d -exec chmod 775 {} \;
+            sudo chown -R www-data:www-data .
+            sudo chmod -R 755 storage
+            sudo chmod -R 755 bootstrap/cache
 
             echo "🚀 Restarting services..."
             sudo systemctl restart php8.3-fpm
