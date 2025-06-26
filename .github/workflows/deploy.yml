@@ -29,6 +29,8 @@ jobs:
 
             # Trust this repo to avoid Git safe directory errors
             git config --global --add safe.directory /home/mikelesnr/portfolio
+            echo "🔧 Fixing storage permissions before Git reset..."
+            sudo chown -R $USER:$USER storage
 
             echo "🔄 Fetching latest code..."
             git fetch origin
