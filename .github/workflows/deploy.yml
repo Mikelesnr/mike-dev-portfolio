@@ -47,7 +47,9 @@ jobs:
 
             echo "🛠️ Building frontend..."
             npm install
+            sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} public/build
             npm run build
+            sudo chown -R www-data:www-data public/build
 
             echo "🔐 Setting permissions..."
             sudo chown -R www-data:www-data .
