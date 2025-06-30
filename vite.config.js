@@ -4,7 +4,7 @@ import laravel from "laravel-vite-plugin";
 import { resolve } from "path";
 
 // Load .env manually from custom location
-dotenv.config({ path: resolve(__dirname, "resources/js/.env") });
+path: resolve(__dirname, "resources/js/.env");
 
 export default defineConfig({
     plugins: [
