@@ -21,3 +21,4 @@ yarn-error.log
 /.vscode
 /.zed
 package-lock.json
+/resources/js/.env
