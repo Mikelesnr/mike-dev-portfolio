@@ -15,7 +15,7 @@ class Work extends Component {
     fetchProjects = async (page) => {
         try {
             const response = await axios.get(
-                `http://127.0.0.1:8000/projects?page=${page}`
+                `https://michaelmwanza.site/projects?page=${page}`
             );
             this.setState({
                 projects: response.data.data,
