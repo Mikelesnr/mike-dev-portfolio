@@ -29,8 +29,6 @@ jobs:
 
             # Trust this repo to avoid Git safe directory errors
             git config --global --add safe.directory /home/mikelesnr/portfolio
-            echo "🔧 Fixing storage permissions before Git reset..."
-            sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} storage
 
             echo "🔄 Fetching latest code..."
             git fetch origin
@@ -47,14 +45,15 @@ jobs:
 
             echo "🛠️ Building frontend..."
             npm install
-            sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} public/build
             npm run build
-            sudo chown -R www-data:www-data public/build
 
             echo "🔐 Setting permissions..."
-            sudo chown -R www-data:www-data .
-            sudo chmod -R 755 storage
-            sudo chmod -R 755 bootstrap/cache
+            # App-specific
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 755 storage bootstrap/cache
+
+            # Frontend build ownership
+            sudo chown -R www-data:www-data public/build
 
             echo "🚀 Restarting services..."
             sudo systemctl restart php8.3-fpm
