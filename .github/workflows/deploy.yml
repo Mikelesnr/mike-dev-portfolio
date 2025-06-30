@@ -25,6 +25,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             set -e
 
+            sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} /home/mikelesnr/portfolio
+
             cd /home/mikelesnr/portfolio
 
             # Trust this repo to avoid Git safe directory errors
