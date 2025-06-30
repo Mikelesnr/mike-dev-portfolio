@@ -15,7 +15,8 @@ class Work extends Component {
     fetchProjects = async (page) => {
         try {
             const response = await axios.get(
-                `https://michaelmwanza.site/projects?page=${page}`
+                // `${VITE_APP_API_URL}/projects?page=${page}`
+                `${import.meta.env.VITE_API_URL}/projects?page=${page}`
             );
             this.setState({
                 projects: response.data.data,
