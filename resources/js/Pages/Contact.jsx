@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import MainLayout from "../Layouts/MainLayout";
 
 class Contact extends Component {
     state = {
@@ -133,3 +134,5 @@ class Contact extends Component {
 }
 
 export default Contact;
+
+Contact.layout = (page) => <MainLayout children={page} />;

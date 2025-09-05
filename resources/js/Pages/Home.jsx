@@ -1,7 +1,8 @@
 import React from "react";
 import { Head } from "@inertiajs/react";
+import MainLayout from "../Layouts/MainLayout";
 
-const Home = () => {
+export default function Home() {
     return (
         <>
             <Head>
@@ -259,6 +260,6 @@ const Home = () => {
             </section>
         </>
     );
-};
+}
 
-export default Home;
+Home.layout = (page) => <MainLayout children={page} />;

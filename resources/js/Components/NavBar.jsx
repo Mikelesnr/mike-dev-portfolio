@@ -1,24 +1,51 @@
 import React, { useState } from "react";
+import { Link, usePage } from "@inertiajs/react";
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { component } = usePage(); // Inertia gives you the current page name
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
 
+    const isActive = (name) => component === name;
+
     return (
         <nav className="navbar">
-            <div className="navbar-logo">MyPortfolio</div>
+            <div className="navbar-logo">
+                <Link href="/">MyPortfolio</Link>
+            </div>
             <ul className={`navbar-links ${isOpen ? "active" : ""}`}>
                 <li>
-                    <a href="/">Home</a>
+                    <Link
+                        href="/"
+                        className={`nav-link ${
+                            isActive("Home") ? "active-link" : ""
+                        }`}
+                    >
+                        Home
+                    </Link>
                 </li>
                 <li>
-                    <a href="/work">My Projects</a>
+                    <Link
+                        href="/work"
+                        className={`nav-link ${
+                            isActive("Work") ? "active-link" : ""
+                        }`}
+                    >
+                        My Projects
+                    </Link>
                 </li>
                 <li>
-                    <a href="/contact">Contact Me</a>
+                    <Link
+                        href="/contact"
+                        className={`nav-link ${
+                            isActive("Contact") ? "active-link" : ""
+                        }`}
+                    >
+                        Contact Me
+                    </Link>
                 </li>
             </ul>
             <div
