@@ -131,7 +131,7 @@ const Home = () => {
                                         className="skill-span"
                                         style={{ width: "90%" }}
                                     >
-                                        <span>Pyhon</span>
+                                        <span>Python</span>
                                         <span>90%</span>
                                     </div>
                                     <div
@@ -158,9 +158,22 @@ const Home = () => {
                                 <div className="skill">
                                     <div
                                         className="skill-span"
-                                        style={{ width: "85%" }}
+                                        style={{ width: "95%" }}
                                     >
                                         <span>React</span>
+                                        <span>95%</span>
+                                    </div>
+                                    <div
+                                        className="skill-bar"
+                                        style={{ width: "95%" }}
+                                    ></div>
+                                </div>
+                                <div className="skill">
+                                    <div
+                                        className="skill-span"
+                                        style={{ width: "85%" }}
+                                    >
+                                        <span>Laravel</span>
                                         <span>85%</span>
                                     </div>
                                     <div
@@ -173,7 +186,7 @@ const Home = () => {
                                         className="skill-span"
                                         style={{ width: "85%" }}
                                     >
-                                        <span>Laravel</span>
+                                        <span>Django</span>
                                         <span>85%</span>
                                     </div>
                                     <div
