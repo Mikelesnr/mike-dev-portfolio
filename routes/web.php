@@ -4,14 +4,17 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Log;
 
 // ✅ Inertia frontend routes
-Route::get('/', fn () => Inertia::render('Home'));
-Route::get('/work', fn () => Inertia::render('Work'));
-Route::get('/contact', fn () => Inertia::render('Contact'));
+Route::get('/', fn() => Inertia::render('Home'));
+Route::get('/work', fn() => Inertia::render('Work'));
+Route::get('/contact', fn() => Inertia::render('Contact'));
 
 // ✅ Public API for frontend (read-only)
 Route::apiResource('projects', ProjectController::class)->only(['index', 'show']);
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // ✅ Blade/admin backend routes
 Route::get('/admin', [ProjectController::class, 'adminIndex'])->name('admin.index');
