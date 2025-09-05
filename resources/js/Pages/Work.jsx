@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import MainLayout from "../Layouts/MainLayout";
 
 class Work extends Component {
     state = {
@@ -109,3 +110,5 @@ class Work extends Component {
 }
 
 export default Work;
+
+Work.layout = (page) => <MainLayout children={page} />;

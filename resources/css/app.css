@@ -13,8 +13,8 @@
 
     --nav-background-color: #b3c9d6;
     --nav-link-color: #423c3b;
-    --nav-hover-link-color: #dea47e;
-    --nav-hover-background-color: #f8f2dc;
+    --nav-hover-link-color: #0b1b18;
+    --nav-hover-background-color: #b6c9b6;
 }
 
 /* universal css start */
@@ -152,6 +152,31 @@ h2 {
     transition: all 0.3s ease;
 }
 
+.nav-link {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--nav-hover-link-color);
+    background-color: var(--nav-hover-background-color);
+    border-radius: 8px;
+}
+
+.nav-link {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+}
+
+.active-link {
+    color: var(--btn-primary);
+    font-weight: bold;
+    border-bottom: 2px solid var(--btn-primary);
+}
 /* nav end */
 
 /* Footer start */
