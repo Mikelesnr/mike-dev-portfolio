@@ -29,7 +29,7 @@
 <body>
     <div class="container">
         <h2>Hello {{ $data['name'] }},</h2>
-        <p>Thank you for contacting me through my developer portfolio. I appreciate your message and will respond as soon as I see it.</p>
+        <p>Thank you for contacting me through my developer portfolio. I appreciate your message and will respond as soon as I review it.</p>
         <p>Warm regards,<br>Michael Ngonidzashe Mwanza</p>
     </div>
 </body>
