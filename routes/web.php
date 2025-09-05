@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
-use Illuminate\Support\Facades\Log;
 
 // ✅ Inertia frontend routes
 Route::get('/', fn() => Inertia::render('Home'));

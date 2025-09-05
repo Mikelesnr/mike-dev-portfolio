@@ -20,6 +20,7 @@
             font-size: 24px;
         }
         p {
+            color:#afccaf;
             font-size: 16px;
             line-height: 1.6;
         }

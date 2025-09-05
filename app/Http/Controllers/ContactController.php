@@ -21,11 +21,9 @@ class ContactController extends Controller
         try {
             // Send thank-you email to sender
             Mail::to($validated['email'])->send(new ContactAcknowledgement($validated));
-            Log::info('✅ ContactAcknowledgement sent to ' . $validated['email']);
 
             // Send notification email to you
             Mail::to('micky.mpd@gmail.com')->send(new ContactNotification($validated));
-            Log::info('✅ ContactNotification sent to micky.mpd@gmail.com', $validated);
         } catch (\Exception $e) {
             Log::error('❌ Email sending failed: ' . $e->getMessage());
             Log::debug('📦 Payload:', $validated);
