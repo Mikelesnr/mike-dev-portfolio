@@ -26,7 +26,7 @@ export default function Home() {
                     </div>
                     <div className="profile-image-container">
                         <img
-                            src="images/profile.png"
+                            src="images/profile.jpeg"
                             alt=""
                             className="profile-image"
                         />
