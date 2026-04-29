@@ -253,7 +253,7 @@ export default function Home() {
                                 <div className="skill">
                                     <div
                                         className="skill-span"
-                                        style={{ width: "100%" }}
+                                        style={{ width: "85%" }}
                                     >
                                         <span>Docker</span>
                                         <span>85%</span>
