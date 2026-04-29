@@ -83,10 +83,10 @@ export default function Home() {
                                         <span>HTML</span>
                                         <span>100%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "100%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -96,10 +96,10 @@ export default function Home() {
                                         <span>CSS</span>
                                         <span>90%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "90%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -109,10 +109,10 @@ export default function Home() {
                                         <span>JavaScript</span>
                                         <span>95%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "95%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -122,10 +122,10 @@ export default function Home() {
                                         <span>PHP</span>
                                         <span>85%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "85%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -135,10 +135,10 @@ export default function Home() {
                                         <span>Python</span>
                                         <span>90%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "90%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -148,10 +148,10 @@ export default function Home() {
                                         <span>MySQL</span>
                                         <span>90%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "90%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                             </div>
                             <div className="skill-category">
@@ -164,10 +164,10 @@ export default function Home() {
                                         <span>React</span>
                                         <span>95%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "95%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -190,10 +190,10 @@ export default function Home() {
                                         <span>Django</span>
                                         <span>85%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "85%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                             </div>
                             <div className="skill-category">
@@ -206,10 +206,10 @@ export default function Home() {
                                         <span>Linux</span>
                                         <span>95%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "95%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -219,10 +219,10 @@ export default function Home() {
                                         <span>Git</span>
                                         <span>90%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "90%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -232,10 +232,10 @@ export default function Home() {
                                         <span>Nginx</span>
                                         <span>85%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "85%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -245,10 +245,10 @@ export default function Home() {
                                         <span>MySQL Server</span>
                                         <span>100%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
                                         style={{ width: "100%" }}
-                                    ></div> */}
+                                    ></div>
                                 </div>
                                 <div className="skill">
                                     <div
@@ -256,12 +256,12 @@ export default function Home() {
                                         style={{ width: "100%" }}
                                     >
                                         <span>Docker</span>
-                                        <span>100%</span>
+                                        <span>85%</span>
                                     </div>
-                                    {/* <div
+                                    <div
                                         className="skill-bar"
-                                        style={{ width: "100%" }}
-                                    ></div> */}
+                                        style={{ width: "85%" }}
+                                    ></div>
                                 </div>
                             </div>
                             <a href="/work" className="btn btn-projects">
