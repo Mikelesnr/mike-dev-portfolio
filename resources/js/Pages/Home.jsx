@@ -256,11 +256,11 @@ export default function Home() {
                                         style={{ width: "100%" }}
                                     >
                                         <span>Docker</span>
-                                        <span>100%</span>
+                                        <span>85%</span>
                                     </div>
                                     <div
                                         className="skill-bar"
-                                        style={{ width: "100%" }}
+                                        style={{ width: "85%" }}
                                     ></div>
                                 </div>
                             </div>
