@@ -250,6 +250,19 @@ export default function Home() {
                                         style={{ width: "100%" }}
                                     ></div>
                                 </div>
+                                <div className="skill">
+                                    <div
+                                        className="skill-span"
+                                        style={{ width: "100%" }}
+                                    >
+                                        <span>Docker</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div
+                                        className="skill-bar"
+                                        style={{ width: "85%" }}
+                                    ></div>
+                                </div>
                             </div>
                             <a href="/work" className="btn btn-projects">
                                 Projects

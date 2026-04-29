@@ -25,7 +25,7 @@ class Contact extends Component {
         try {
             const response = await axios.post(
                 `${import.meta.env.VITE_API_URL}/contact`,
-                { name, email, message }
+                { name, email, message },
             );
 
             this.setState({
@@ -104,7 +104,9 @@ class Contact extends Component {
                                     className="btn-submit"
                                     disabled={submitting}
                                 >
-                                    {submitting ? "Sending..." : "Send Message"}
+                                    {submitting
+                                        ? "Sending...."
+                                        : "Send Message"}
                                 </button>
 
                                 {success && (
