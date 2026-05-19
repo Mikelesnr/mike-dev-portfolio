@@ -57,7 +57,8 @@ class ProjectChatController extends Controller
 
             // 4. Send HTTP REST Request to Gemini 1.5 Flash API (Port 443)
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . env('GROQ_API_KEY'),
+                // Instead of env('GROQ_API_KEY')
+                'Authorization' => 'Bearer ' . config('services.groq.key'),
                 'Content-Type' => 'application/json',
             ])->post("https://api.groq.com/openai/v1/chat/completions", [
                 'model' => 'llama-3.3-70b-versatile',
