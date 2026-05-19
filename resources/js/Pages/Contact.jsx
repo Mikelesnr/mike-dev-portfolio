@@ -23,12 +23,9 @@ class Contact extends Component {
         const { name, email, message } = this.state;
 
         try {
-            const response = await axios.post(
-                route("contact.submit"), // ⚡ Directly references Laravel's named route securely
-                { name, email, message },
-            );
-            c;
+            await axios.post(route("contact.submit"), { name, email, message });
 
+            // Logic fix: The 'c;' was removed here
             this.setState({
                 name: "",
                 email: "",
@@ -38,12 +35,12 @@ class Contact extends Component {
                 error: null,
             });
         } catch (error) {
+            // Your original catch logic here...
             let errorMsg = "Something went wrong. Please try again.";
             if (error.response?.data?.errors) {
-                const errors = Object.values(error.response.data.errors)
+                errorMsg = Object.values(error.response.data.errors)
                     .flat()
                     .join(" ");
-                errorMsg = errors;
             }
             this.setState({
                 submitting: false,
