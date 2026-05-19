@@ -153,7 +153,10 @@ export default function Dashboard({ categories = [], projects = [] }) {
                                     />
                                 )}
                                 {activeTab === "skills" && (
-                                    <SkillsTab categories={categories} />
+                                    <SkillsTab
+                                        categories={categories}
+                                        isAdmin={isAdmin}
+                                    />
                                 )}
                                 {activeTab === "settings" && (
                                     <SettingsTab

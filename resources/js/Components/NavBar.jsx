@@ -4,7 +4,8 @@ import { Link, usePage } from "@inertiajs/react";
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { component, props } = usePage();
-    const auth = props.auth || { user: null }; // Guard against missing auth objects smoothly
+    // Safely extract auth to prevent errors if the user is a guest
+    const auth = props.auth || { user: null };
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -17,7 +18,9 @@ const NavBar = () => {
             <div className="navbar-logo">
                 <Link href="/">MyPortfolio</Link>
             </div>
+
             <ul className={`navbar-links ${isOpen ? "active" : ""}`}>
+                {/* Public Routes */}
                 <li>
                     <Link
                         href="/"
@@ -43,9 +46,10 @@ const NavBar = () => {
                     </Link>
                 </li>
 
-                {/* 🛡️ Breeze Authentication Links Dynamic Inclusion */}
+                {/* Authentication Logic */}
                 {auth.user ? (
                     <>
+                        {/* Admin Panel */}
                         <li>
                             <Link
                                 href={route("dashboard")}
@@ -55,6 +59,16 @@ const NavBar = () => {
                                 Admin Panel
                             </Link>
                         </li>
+                        {/* Profile Settings */}
+                        <li>
+                            <Link
+                                href={route("profile.edit")}
+                                className={`nav-link ${isActive("Profile/Edit") ? "active-link" : ""}`}
+                            >
+                                Profile Settings
+                            </Link>
+                        </li>
+                        {/* Logout */}
                         <li>
                             <Link
                                 href={route("logout")}
@@ -63,7 +77,7 @@ const NavBar = () => {
                                 className="nav-link"
                                 style={{ textAlign: "left", cursor: "pointer" }}
                             >
-                                Log Out ({auth.user.name})
+                                Log Out
                             </Link>
                         </li>
                     </>
@@ -78,6 +92,7 @@ const NavBar = () => {
                     </li>
                 )}
             </ul>
+
             <div
                 className="navbar-toggle"
                 id="mobile-menu"
