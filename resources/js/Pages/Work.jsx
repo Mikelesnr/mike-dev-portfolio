@@ -15,9 +15,7 @@ class Work extends Component {
 
     fetchProjects = async (page) => {
         try {
-            const response = await axios.get(
-                `${import.meta.env.VITE_API_URL}/projects?page=${page}`
-            );
+            const response = await axios.get(`/projects?page=${page}`);
             this.setState({
                 projects: response.data.data,
                 currentPage: response.data.current_page,

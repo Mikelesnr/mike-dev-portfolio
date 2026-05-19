@@ -2,7 +2,7 @@ import React from "react";
 import { Head } from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout";
 
-export default function Home() {
+export default function Home({ categories = [], introVideoUrl }) {
     return (
         <>
             <Head>
@@ -34,10 +34,20 @@ export default function Home() {
                 </div>
             </section>
             <br />
+
+            {/* 📝 About Me Section with Integrated Video */}
             <section id="about-me" className="section about-me-section">
                 <div className="container container-about">
                     <h2 className="body-h2">About Me</h2>
-                    <div className="content about-me-content">
+                    <div
+                        className="content about-me-content"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "30px",
+                        }}
+                    >
+                        {/* Profile Info Details Block */}
                         <div className="info profile-info">
                             <h3 className="body-h3 ">Michael Mwanza</h3>
                             <p className="font-p">
@@ -64,206 +74,97 @@ export default function Home() {
                                 Download CV
                             </a>
                         </div>
+
+                        {/* 🎥 Embedded Video Player Inside About Box */}
+                        {introVideoUrl && (
+                            <div
+                                className="about-video-container"
+                                style={{
+                                    width: "100%",
+                                    maxWidth: "800px",
+                                    margin: "0 auto",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        position: "relative",
+                                        paddingBottom: "56.25%",
+                                        height: 0,
+                                        overflow: "hidden",
+                                        borderRadius: "12px",
+                                        boxShadow:
+                                            "0 10px 25px rgba(0,0,0,0.15)",
+                                    }}
+                                >
+                                    <iframe
+                                        style={{
+                                            position: "absolute",
+                                            top: 0,
+                                            left: 0,
+                                            width: "100%",
+                                            height: "100%",
+                                            border: 0,
+                                        }}
+                                        src={introVideoUrl}
+                                        title="Michael Mwanza - Profile Video"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
+
             <section id="Skills" className="section skills-section">
                 <div className=" container container-skills">
                     <h2 className="body-h2">Skills</h2>
                     <div className="content skills-content">
                         <div className="info skills-info">
                             <h3 className="body-h3">My Skills</h3>
-                            <div className="skill-category">
-                                <h3>Languages</h3>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "100%" }}
-                                    >
-                                        <span>HTML</span>
-                                        <span>100%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "100%" }}
-                                    ></div>
+
+                            {categories.map((category) => (
+                                <div
+                                    className="skill-category"
+                                    key={category.id}
+                                >
+                                    <h3>{category.name}</h3>
+
+                                    {category.skills &&
+                                        category.skills.map((skill) => {
+                                            const widthStyle = `${skill.percentage}%`;
+                                            return (
+                                                <div
+                                                    className="skill"
+                                                    key={skill.id}
+                                                >
+                                                    <div
+                                                        className="skill-span"
+                                                        style={{
+                                                            width: widthStyle,
+                                                        }}
+                                                    >
+                                                        <span>
+                                                            {skill.name}
+                                                        </span>
+                                                        <span>
+                                                            {widthStyle}
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        className="skill-bar"
+                                                        style={{
+                                                            width: widthStyle,
+                                                        }}
+                                                    ></div>
+                                                </div>
+                                            );
+                                        })}
                                 </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "90%" }}
-                                    >
-                                        <span>CSS</span>
-                                        <span>90%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "90%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "95%" }}
-                                    >
-                                        <span>JavaScript</span>
-                                        <span>95%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "95%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "85%" }}
-                                    >
-                                        <span>PHP</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "85%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "90%" }}
-                                    >
-                                        <span>Python</span>
-                                        <span>90%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "90%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "90%" }}
-                                    >
-                                        <span>MySQL</span>
-                                        <span>90%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "90%" }}
-                                    ></div>
-                                </div>
-                            </div>
-                            <div className="skill-category">
-                                <h3>Frameworks</h3>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "95%" }}
-                                    >
-                                        <span>React</span>
-                                        <span>95%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "95%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "85%" }}
-                                    >
-                                        <span>Laravel</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "85%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "85%" }}
-                                    >
-                                        <span>Django</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "85%" }}
-                                    ></div>
-                                </div>
-                            </div>
-                            <div className="skill-category">
-                                <h3>DevOps</h3>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "95%" }}
-                                    >
-                                        <span>Linux</span>
-                                        <span>95%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "95%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "90%" }}
-                                    >
-                                        <span>Git</span>
-                                        <span>90%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "90%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "85%" }}
-                                    >
-                                        <span>Nginx</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "85%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "100%" }}
-                                    >
-                                        <span>MySQL Server</span>
-                                        <span>100%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "100%" }}
-                                    ></div>
-                                </div>
-                                <div className="skill">
-                                    <div
-                                        className="skill-span"
-                                        style={{ width: "85%" }}
-                                    >
-                                        <span>Docker</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div
-                                        className="skill-bar"
-                                        style={{ width: "85%" }}
-                                    ></div>
-                                </div>
-                            </div>
+                            ))}
+
                             <a href="/work" className="btn btn-projects">
                                 Projects
                             </a>
