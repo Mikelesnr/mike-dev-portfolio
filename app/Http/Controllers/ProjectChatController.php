@@ -89,10 +89,15 @@ class ProjectChatController extends Controller
                 'reply' => $reply,
             ]);
         } catch (\Exception $e) {
-            Log::error('❌ Portfolio AI Assistant failed: ' . $e->getMessage());
+            // This logs the real error to your storage/logs/laravel.log file
+            \Illuminate\Support\Facades\Log::error('❌ Portfolio AI Assistant failed: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            // This sends the real error back to the chat box so you can see it
             return response()->json([
                 'success' => false,
-                'message' => 'The AI assistant is temporarily offline.',
+                'message' => 'DEBUG ERROR: ' . $e->getMessage(),
             ], 500);
         }
     }
