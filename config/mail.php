@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'default' => "smtp", //env('MAIL_MAILER', 'smtp'),
+    'default' => env('MAIL_MAILER'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,6 +93,10 @@ return [
                 'ses',
                 'postmark',
             ],
+        ],
+        // 🔹 Add this block inside the 'mailers' array:
+        'gmail_api' => [
+            'transport' => 'gmail_api',
         ],
 
     ],

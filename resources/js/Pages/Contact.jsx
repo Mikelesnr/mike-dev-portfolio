@@ -24,9 +24,10 @@ class Contact extends Component {
 
         try {
             const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/contact`,
+                route("contact.submit"), // ⚡ Directly references Laravel's named route securely
                 { name, email, message },
             );
+            c;
 
             this.setState({
                 name: "",
