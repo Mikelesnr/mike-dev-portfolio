@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 :root {
+    /* Absolute path from the public root folder */
+    --background-image-url: url("/images/background.jpeg");
+
     --text-color: rgb(195, 230, 221);
     --div-color: #0b1b18;
     --btn-primary: #d9ee60;
@@ -270,7 +273,8 @@ h2 {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    box-shadow: 0 8px 16px 0 rgba(233, 229, 229, 0.2),
+    box-shadow:
+        0 8px 16px 0 rgba(233, 229, 229, 0.2),
         0 6px 20px 0 rgba(192, 188, 188, 0.19);
     transition-duration: 0.4s;
 }
@@ -280,7 +284,8 @@ h2 {
     background-color: white;
     color: black;
     border: 2px solid #60ee60;
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    box-shadow:
+        0 12px 16px 0 rgba(0, 0, 0, 0.24),
         0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -300,7 +305,8 @@ h2 {
     color: var(--btn-secondary);
     font-weight: 900;
     margin: 10px;
-    box-shadow: 0 8px 16px 0 rgba(9, 39, 33, 0.1),
+    box-shadow:
+        0 8px 16px 0 rgba(9, 39, 33, 0.1),
         0 6px 20px 0 rgba(11, 27, 24, 0.19);
 }
 

@@ -84,6 +84,40 @@
             </tbody>
         </table>
     </div>
+    <div class="card" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 20px;">
+    <h3>Change Introduction Video</h3>
+    <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+        Paste any standard YouTube link below to immediately swap out the video on your homepage.
+    </p>
+
+    @if(session('success'))
+        <div style="background: #d1fae5; color: #065f46; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 14px;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <form action="{{ route('admin.settings.video.update') }}" method="POST">
+        @csrf
+        @method('PUT')
+        
+        <div style="margin-bottom: 15px;">
+            <label for="video_url" style="display:block; margin-bottom:6px; font-weight:bold; font-size: 14px;">YouTube Link:</label>
+            <input 
+                type="url" 
+                id="video_url" 
+                name="video_url" 
+                placeholder="e.g., https://www.youtube.com/watch?v=e5EyRIomrBM" 
+                value="{{ \App\Models\Setting::where('key', 'intro_video_url')->value('value') }}"
+                required 
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"
+            >
+        </div>
+
+        <button type="submit" style="background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: background 0.2s;">
+            Update Video Stream
+        </button>
+    </form>
+</div>
 </body>
 
 </html>
