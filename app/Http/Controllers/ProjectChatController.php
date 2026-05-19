@@ -57,32 +57,24 @@ class ProjectChatController extends Controller
 
             // 4. Send HTTP REST Request to Gemini 1.5 Flash API (Port 443)
             $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('GROQ_API_KEY'),
                 'Content-Type' => 'application/json',
-            ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . env('GEMINI_API_KEY'), [
-                'contents' => [
-                    [
-                        'parts' => [
-                            ['text' => $request->input('message')]
-                        ]
-                    ]
+            ])->post("https://api.groq.com/openai/v1/chat/completions", [
+                'model' => 'llama-3.3-70b-versatile',
+                'messages' => [
+                    ['role' => 'system', 'content' => $systemInstruction],
+                    ['role' => 'user', 'content' => $request->input('message')]
                 ],
-                'systemInstruction' => [
-                    'parts' => [
-                        ['text' => $systemInstruction]
-                    ]
-                ],
-                'generationConfig' => [
-                    'temperature' => 0.2, // Kept low for solid, factual consistency
-                    'maxOutputTokens' => 450,
-                ]
+                'temperature' => 0.2,
+                'max_tokens' => 450,
             ]);
 
             if ($response->failed()) {
-                throw new \Exception('Gemini API Error Response: ' . $response->body());
+                throw new \Exception('Grok API Error Response: ' . $response->body());
             }
 
             $result = $response->json();
-            $reply = $result['candidates'][0]['content']['parts'][0]['text'] ?? "I'm having a hard time loading the data right now.";
+            $reply = $result['choices'][0]['message']['content'] ?? "I'm having a hard time loading the data right now.";
 
             return response()->json([
                 'success' => true,
@@ -90,7 +82,7 @@ class ProjectChatController extends Controller
             ]);
         } catch (\Exception $e) {
             // This logs the real error to your storage/logs/laravel.log file
-            \Illuminate\Support\Facades\Log::error('❌ Portfolio AI Assistant failed: ' . $e->getMessage(), [
+            Log::error('❌ Portfolio AI Assistant failed: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString()
             ]);
 
