@@ -87,7 +87,7 @@ const NavBar = () => {
                             href={route("login")}
                             className={`nav-link ${isActive("Auth/Login") ? "active-link" : ""}`}
                         >
-                            Log In
+                            Admin Portal
                         </Link>
                     </li>
                 )}
