@@ -8,13 +8,15 @@ import Sidebar from "@/Components/Dashboard/Sidebar";
 import ProjectsTab from "@/Components/Dashboard/ProjectsTab";
 import SkillsTab from "@/Components/Dashboard/SkillsTab";
 import SettingsTab from "@/Components/Dashboard/SettingsTab";
+import CustomersTab from "@/Components/Dashboard/CustomersTab";
 
-export default function Dashboard({ categories = [], projects = [] }) {
+export default function Dashboard({ categories = [], projects = [], customers = [] }) {
     const { auth } = usePage().props;
     const isAdmin = auth?.user?.is_admin == 1 || auth?.user?.is_admin === true;
 
     const [activeTab, setActiveTab] = useState("projects");
     const [editingProjectId, setEditingProjectId] = useState(null);
+    const [editingCustomerId, setEditingCustomerId] = useState(null);
 
     // Form Hooks
     const projectForm = useForm({
@@ -23,7 +25,13 @@ export default function Dashboard({ categories = [], projects = [] }) {
         description: "",
         techstack: "",
         deployment: "",
+        is_featured: false,
         skill_ids: [],
+    });
+    const customerForm = useForm({
+        name: "",
+        logo_url: "",
+        project_id: "",
     });
     const videoForm = useForm({ video_url: "" });
 
@@ -36,8 +44,43 @@ export default function Dashboard({ categories = [], projects = [] }) {
             description: project.description || "",
             techstack: project.techstack || "",
             deployment: project.deployment || "",
+            is_featured: Boolean(project.is_featured),
             skill_ids: (project.skills ?? []).map((s) => s.id),
         });
+    };
+
+    // Customer Actions
+    const startEditCustomer = (customer) => {
+        setEditingCustomerId(customer.id);
+        customerForm.setData({
+            name: customer.name || "",
+            logo_url: customer.logo_url || "",
+            project_id: customer.projects?.[0]?.id ?? "",
+        });
+    };
+
+    const cancelEditCustomer = () => {
+        setEditingCustomerId(null);
+        customerForm.reset();
+    };
+
+    const handleCustomerSubmit = (e) => {
+        e.preventDefault();
+        if (editingCustomerId) {
+            customerForm.put(
+                route("breeze.customers.update", editingCustomerId),
+                {
+                    onSuccess: () => {
+                        cancelEditCustomer();
+                        alert("Customer successfully updated!");
+                    },
+                },
+            );
+        } else {
+            customerForm.post(route("breeze.customers.store"), {
+                onSuccess: () => customerForm.reset(),
+            });
+        }
     };
 
     const cancelEditProject = () => {
@@ -159,6 +202,20 @@ export default function Dashboard({ categories = [], projects = [] }) {
                                     <SkillsTab
                                         categories={categories}
                                         isAdmin={isAdmin}
+                                    />
+                                )}
+                                {activeTab === "customers" && (
+                                    <CustomersTab
+                                        customers={customers}
+                                        projects={projects}
+                                        customerForm={customerForm}
+                                        editingCustomerId={editingCustomerId}
+                                        startEditCustomer={startEditCustomer}
+                                        cancelEditCustomer={cancelEditCustomer}
+                                        handleCustomerSubmit={
+                                            handleCustomerSubmit
+                                        }
+                                        panelStyles={panelStyles}
                                     />
                                 )}
                                 {activeTab === "settings" && (

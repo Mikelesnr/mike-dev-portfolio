@@ -1,4 +1,5 @@
 import React from "react";
+import SocialLinks from "../SocialLinks";
 
 export default function Hero() {
     return (
@@ -7,7 +8,12 @@ export default function Hero() {
                 <div className="into-container gradient-background">
                     <p>Hello!</p>
                     <h1 className="myh1">I'm Michael Mwanza</h1>
-                    <h2>Fullstack Web Developer</h2>
+                    <h2>Fullstack Web Developer, based in Harare, Zimbabwe</h2>
+                    <p className="hero-tagline">
+                        I design, build and ship full products end to end —
+                        currently building an offline-first POS platform for
+                        small businesses across Zimbabwe and SADC.
+                    </p>
                     <div className="buttons">
                         <a href="/contact" className="hire-btn btn">
                             Hire Me
@@ -16,6 +22,7 @@ export default function Hero() {
                             My Work
                         </a>
                     </div>
+                    <SocialLinks className="hero-social-links" />
                 </div>
                 <div className="profile-image-container">
                     <img

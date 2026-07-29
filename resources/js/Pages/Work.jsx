@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Head } from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout";
 import useProjects from "../Hooks/useProjects";
-import ProjectCard from "../Components/Work/ProjectCard";
-import ProjectModal from "../Components/Work/ProjectModal";
+import ProjectCard from "../Components/Projects/ProjectCard";
+import ProjectModal from "../Components/Projects/ProjectModal";
 import Pagination from "../Components/Work/Pagination";
 
 function Work() {

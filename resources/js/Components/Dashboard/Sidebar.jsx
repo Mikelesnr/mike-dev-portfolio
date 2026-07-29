@@ -33,6 +33,12 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                 🛠️ Skill Metrics
             </button>
             <button
+                onClick={() => setActiveTab("customers")}
+                style={sidebarLink(activeTab === "customers")}
+            >
+                🤝 Customers
+            </button>
+            <button
                 onClick={() => setActiveTab("settings")}
                 style={sidebarLink(activeTab === "settings")}
             >

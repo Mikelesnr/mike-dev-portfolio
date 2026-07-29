@@ -4,12 +4,14 @@ use Inertia\Inertia;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Models\Project;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\ProjectChatController;
 use App\Http\Controllers\ProfileController;
 
@@ -22,6 +24,8 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return Inertia::render('Home', [
         'categories' => Category::has('skills')->with('skills.projects')->get(),
+        'featuredProjects' => Project::where('is_featured', true)->with(['skills', 'customers'])->get(),
+        'customers' => Customer::with('projects')->get(),
         'introVideoUrl' => Setting::where('key', 'intro_video_url')->value('value')
     ]);
 });
@@ -77,7 +81,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
             'categories' => Category::with('skills.projects')->get(),
-            'projects' => Project::with('skills')->get(),
+            'projects' => Project::with(['skills', 'customers'])->get(),
+            'customers' => Customer::with('projects')->get(),
         ]);
     })->name('dashboard');
 
@@ -87,6 +92,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/projects', [ProjectController::class, 'store'])->name('breeze.projects.store');
         Route::post('/categories', [CategoryController::class, 'store'])->name('breeze.categories.store');
         Route::post('/skills', [SkillController::class, 'store'])->name('breeze.skills.store');
+        Route::post('/customers', [CustomerController::class, 'store'])->name('breeze.customers.store');
+        Route::put('/customers/{id}', [CustomerController::class, 'update'])->name('breeze.customers.update');
+        Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('breeze.customers.destroy');
 
         // ⚡ RESOLVED ACTION: Now securely wrapped inside your 'manage-portfolio' Gate validation check!
         Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('admin.projects.update');
