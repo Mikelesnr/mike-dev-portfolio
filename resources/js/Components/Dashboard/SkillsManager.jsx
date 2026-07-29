@@ -2,17 +2,9 @@ import React from "react";
 import { useForm } from "@inertiajs/react";
 
 export default function SkillsManager({ categories }) {
-    const {
-        data,
-        setData,
-        post,
-        delete: destroy,
-        reset,
-        processing,
-    } = useForm({
+    const { data, setData, post, delete: destroy, reset, processing } = useForm({
         category_id: "",
         name: "",
-        percentage: 50,
     });
 
     const submit = (e) => {
@@ -30,7 +22,11 @@ export default function SkillsManager({ categories }) {
                 className="bg-black/40 p-5 rounded-xl border border-gray-800"
             >
                 <h4 className="text-white font-bold mb-4">Add New Skill</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <p className="text-xs text-gray-500 mb-4">
+                    Tag which projects prove this skill from the Projects tab
+                    after adding it here.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <select
                         className="bg-black border border-gray-700 rounded p-2 text-white"
                         onChange={(e) => setData("category_id", e.target.value)}
@@ -50,14 +46,6 @@ export default function SkillsManager({ categories }) {
                         className="bg-black border border-gray-700 rounded p-2 text-white"
                         onChange={(e) => setData("name", e.target.value)}
                         value={data.name}
-                        required
-                    />
-                    <input
-                        type="number"
-                        placeholder="%"
-                        className="bg-black border border-gray-700 rounded p-2 text-white"
-                        onChange={(e) => setData("percentage", e.target.value)}
-                        value={data.percentage}
                         required
                     />
                 </div>

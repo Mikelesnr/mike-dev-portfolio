@@ -14,10 +14,9 @@ class SkillController extends Controller
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|max:255',
-            'percentage' => 'required|integer|min:0|max:100',
         ]);
 
-        Skill::create($request->all());
+        Skill::create($request->only(['category_id', 'name']));
 
         return redirect()->back()->with('success', 'Skill added successfully.');
     }
@@ -30,10 +29,9 @@ class SkillController extends Controller
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|max:255',
-            'percentage' => 'required|integer|min:0|max:100',
         ]);
 
-        $skill->update($request->all());
+        $skill->update($request->only(['category_id', 'name']));
 
         return redirect()->back()->with('success', 'Skill updated successfully.');
     }

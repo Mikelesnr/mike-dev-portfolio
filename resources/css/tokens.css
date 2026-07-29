@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Design tokens
+   --------------------------------------------------------------------------
+   Direction: a developer's ledger. Michael builds offline-first POS
+   software for small shops and bars across Zimbabwe/SADC — systems that
+   have to keep an honest, resilient record even when the network drops.
+   The palette borrows from that world: ink, paper, and a brass "stamp"
+   accent, rather than a generic dark-mode neon look.
+   ========================================================================== */
+
+:root {
+    /* -- Color: ink & paper -------------------------------------------- */
+    --ink: #10181a; /* page background */
+    --ink-raised: #182422; /* panels / cards */
+    --ink-raised-2: #1f2e2b; /* hover / nested panels */
+    --hairline: #2a3936; /* dividers, borders */
+
+    --paper: #ede7d8; /* primary text — warm off-white, ledger paper */
+    --paper-muted: #93a29b; /* secondary text */
+    --paper-faint: #5f6f68; /* tertiary / disabled text */
+
+    /* -- Color: accents --------------------------------------------------
+       Brass = the "stamp": primary CTA, live-status marks, highlights.
+       Signal = a cool terminal cyan used sparingly for links/interactive
+       affordances so the brass stays special. */
+    --brass: #c89b3c;
+    --brass-strong: #e0b656;
+    --signal: #4fb6a8;
+    --signal-strong: #6fd0c1;
+
+    --danger: #d16a5c;
+
+    /* -- Type --------------------------------------------------------- */
+    --font-display: "Fraunces", "Merriweather", serif;
+    --font-body: "Inter", "Roboto", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* -- Shape & motion -------------------------------------------------- */
+    --radius-sm: 6px;
+    --radius-md: 14px;
+    --radius-lg: 24px;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Back-compat aliases so any untouched rule elsewhere keeps working */
+    --background-image-url: none;
+    --text-color: var(--paper);
+    --div-color: var(--ink);
+    --btn-primary: var(--brass);
+    --btn-secondary: var(--ink-raised);
+    --heading-font: var(--font-display);
+    --paragraph-font: var(--font-body);
+    --nav-background-color: var(--ink);
+    --nav-link-color: var(--paper-muted);
+    --nav-hover-link-color: var(--paper);
+    --nav-hover-background-color: var(--ink-raised);
+}

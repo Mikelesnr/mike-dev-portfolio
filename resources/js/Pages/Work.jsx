@@ -1,110 +1,55 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { Head } from "@inertiajs/react";
 import MainLayout from "../Layouts/MainLayout";
+import useProjects from "../Hooks/useProjects";
+import ProjectCard from "../Components/Work/ProjectCard";
+import ProjectModal from "../Components/Work/ProjectModal";
+import Pagination from "../Components/Work/Pagination";
 
-class Work extends Component {
-    state = {
-        projects: [],
-        currentPage: 1,
-        lastPage: 1,
-    };
+function Work() {
+    const { projects, currentPage, lastPage, goToPage } = useProjects();
+    const [previewProject, setPreviewProject] = useState(null);
 
-    componentDidMount() {
-        this.fetchProjects(this.state.currentPage);
-    }
+    return (
+        <>
+            <Head>
+                <title>My Work — Michael Mwanza</title>
+            </Head>
 
-    fetchProjects = async (page) => {
-        try {
-            const response = await axios.get(`/projects?page=${page}`);
-            this.setState({
-                projects: response.data.data,
-                currentPage: response.data.current_page,
-                lastPage: response.data.last_page,
-            });
-        } catch (error) {
-            console.error("Error fetching projects:", error);
-        }
-    };
-
-    handlePageChange = (page) => {
-        this.fetchProjects(page);
-    };
-
-    render() {
-        const { projects, currentPage, lastPage } = this.state;
-
-        return (
-            <section id="Skills" className="section projects-section">
+            <section id="Work" className="section projects-section">
                 <div className="container container-skills">
                     <h2 className="body-h2">My Projects</h2>
-                    <div
-                        className="content skills-content"
-                        style={{ display: "flex", flexDirection: "column" }}
-                    >
+                    <p className="ledger-stub">
+                        <span>click a project to launch it</span>
+                    </p>
+
+                    <div className="content projects-grid" style={{ maxWidth: "100%" }}>
                         {Array.isArray(projects) &&
                             projects.map((project) => (
-                                <div
+                                <ProjectCard
                                     key={project.id}
-                                    className="info project-info"
-                                >
-                                    <h3 className="body-h3">
-                                        <a
-                                            href={project.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            {project.name}
-                                        </a>
-                                    </h3>
-                                    <p className="body-p">
-                                        <strong>Description: </strong>{" "}
-                                        {project.description}
-                                    </p>
-                                    <p>
-                                        <strong>Tech Stack: </strong>{" "}
-                                        {project.techstack}
-                                    </p>
-                                    <p>
-                                        <strong>Deployment: </strong>{" "}
-                                        {project.deployment}
-                                    </p>
-                                    <div>
-                                        <iframe
-                                            src={project.url}
-                                            className="custom-iframe"
-                                            title={project.name}
-                                        ></iframe>
-                                    </div>
-                                </div>
+                                    project={project}
+                                    onPreview={setPreviewProject}
+                                />
                             ))}
                     </div>
-                    <div className="pagination buttons">
-                        <button
-                            onClick={() =>
-                                this.handlePageChange(currentPage - 1)
-                            }
-                            disabled={currentPage === 1}
-                            className="btn btn-projects"
-                        >
-                            Prev
-                        </button>
-                        <span>
-                            Page {currentPage} of {lastPage}
-                        </span>
-                        <button
-                            onClick={() =>
-                                this.handlePageChange(currentPage + 1)
-                            }
-                            disabled={currentPage === lastPage}
-                            className="btn btn-projects"
-                        >
-                            Next
-                        </button>
-                    </div>
+
+                    <Pagination
+                        currentPage={currentPage}
+                        lastPage={lastPage}
+                        onPageChange={goToPage}
+                    />
                 </div>
             </section>
-        );
-    }
+
+            {previewProject && (
+                <ProjectModal
+                    project={previewProject}
+                    onClose={() => setPreviewProject(null)}
+                />
+            )}
+        </>
+    );
 }
 
 export default Work;
