@@ -21,7 +21,7 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
-        'categories' => Category::has('skills')->with('skills')->get(),
+        'categories' => Category::has('skills')->with('skills.projects')->get(),
         'introVideoUrl' => Setting::where('key', 'intro_video_url')->value('value')
     ]);
 });
@@ -76,8 +76,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 1. Inertia Dashboard Control Deck Layout
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
-            'categories' => Category::with('skills')->get(),
-            'projects' => Project::all(),
+            'categories' => Category::with('skills.projects')->get(),
+            'projects' => Project::with('skills')->get(),
         ]);
     })->name('dashboard');
 
