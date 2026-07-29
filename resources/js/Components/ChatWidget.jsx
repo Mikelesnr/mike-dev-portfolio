@@ -102,7 +102,7 @@ class ChatWidget extends Component {
                                 Portfolio Assistant
                             </h4>
                             <span style={{ fontSize: "11px", opacity: 0.8 }}>
-                                Powered by Gemini
+                                Powered by Grok
                             </span>
                         </div>
 

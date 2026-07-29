@@ -26,11 +26,11 @@ const Footer = () => {
                 <p>
                     Email:{" "}
                     <a
-                        href="mailto:mwanza.m.n@gmail.com"
+                        href="mailto:michael@michaelmwanza.site"
                         className="footer-link"
                         target="blank"
                     >
-                        mwanza.m.n@gmail.com
+                        michael@michaelmwanza.site
                     </a>
                 </p>
                 <p>
