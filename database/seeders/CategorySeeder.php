@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
@@ -20,8 +17,9 @@ class CategorySeeder extends Seeder
         $categories = [
             'Languages',
             'Frameworks',
-            'DevOps',
-            'Automation'
+            'Offline-First & Data Sync',
+            'DevOps & Infrastructure',
+            'Automation',
         ];
 
         foreach ($categories as $name) {

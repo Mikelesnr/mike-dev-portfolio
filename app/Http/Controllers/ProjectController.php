@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function index(): JsonResponse
     {
         // ⚡ Resolved P1005: Added all 5 arguments to satisfy static analysis
-        $projects = Project::paginate(3, ['*'], 'page', null, null);
+        $projects = Project::with('skills')->paginate(3, ['*'], 'page', null, null);
         return response()->json($projects);
     }
 
@@ -26,14 +26,20 @@ class ProjectController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'url' => 'required|url',
+            'url' => 'nullable|url',
             'name' => 'required|string',
             'description' => 'required|string',
             'techstack' => 'required|string',
             'deployment' => 'required|string',
+            'skill_ids' => 'array',
+            'skill_ids.*' => 'exists:skills,id',
         ]);
 
-        Project::create($request->all());
+        $project = Project::create($request->only([
+            'url', 'name', 'description', 'techstack', 'deployment',
+        ]));
+
+        $project->skills()->sync($request->input('skill_ids', []));
 
         // Redirects to React Dashboard for Inertia requests, Blade admin for legacy
         if ($request->wantsJson() || $request->header('X-Inertia')) {
@@ -69,15 +75,20 @@ class ProjectController extends Controller
     {
         // ⚡ Resolved P1132: Added explicit string type hint
         $request->validate([
-            'url' => 'required|url',
+            'url' => 'nullable|url',
             'name' => 'required|string',
             'description' => 'required|string',
             'techstack' => 'required|string',
             'deployment' => 'required|string',
+            'skill_ids' => 'array',
+            'skill_ids.*' => 'exists:skills,id',
         ]);
 
         $project = Project::findOrFail($id);
-        $project->update($request->all());
+        $project->update($request->only([
+            'url', 'name', 'description', 'techstack', 'deployment',
+        ]));
+        $project->skills()->sync($request->input('skill_ids', []));
 
         // Redirects to React Dashboard for Inertia requests, Blade admin for legacy
         if ($request->wantsJson() || $request->header('X-Inertia')) {

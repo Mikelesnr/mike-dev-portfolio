@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Schema;
 class SkillSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Skills are no longer self-rated with a percentage. Each one is
+     * proven by the real projects it was used on — see ProjectSeeder,
+     * which attaches these skills to Summit Guest House, Aligned
+     * Surveyors, ZamSam and Mom&Pop POS.
      */
     public function run(): void
     {
@@ -18,46 +21,47 @@ class SkillSeeder extends Seeder
         Skill::truncate();
         Schema::enableForeignKeyConstraints();
 
-        // Define skills mapped directly to the names of the categories we just created
         $skillsData = [
             'Languages' => [
-                ['name' => 'PHP', 'percentage' => 95],
-                ['name' => 'JavaScript', 'percentage' => 90],
-                ['name' => 'TypeScript', 'percentage' => 85],
-                ['name' => 'SQL', 'percentage' => 90],
-                ['name' => 'HTML & CSS', 'percentage' => 95],
+                'PHP',
+                'JavaScript',
+                'TypeScript',
+                'SQL',
+                'HTML & CSS',
             ],
             'Frameworks' => [
-                ['name' => 'Laravel', 'percentage' => 95],
-                ['name' => 'React', 'percentage' => 90],
-                ['name' => 'Inertia.js', 'percentage' => 95],
-                ['name' => 'Tailwind CSS', 'percentage' => 95],
+                'Laravel',
+                'React',
+                'Inertia.js',
+                'Tailwind CSS',
             ],
-            'DevOps' => [
-                ['name' => 'Docker & Compose', 'percentage' => 85],
-                ['name' => 'Ubuntu Server / Linux', 'percentage' => 90],
-                ['name' => 'MySQL Server Management', 'percentage' => 90],
-                ['name' => 'Git & GitHub Workflows', 'percentage' => 95],
+            'Offline-First & Data Sync' => [
+                'Dexie.js (IndexedDB)',
+                'Client-side UUID Sync',
+                'Multi-Tenant Architecture',
+            ],
+            'DevOps & Infrastructure' => [
+                'Docker & Compose',
+                'Ubuntu Server / Linux',
+                'MySQL & PostgreSQL',
+                'Git & GitHub Workflows',
+                'Render Deployments',
             ],
             'Automation' => [
-                ['name' => 'AI Prompt Engineering (Gemini API)', 'percentage' => 90],
-                ['name' => 'Automated Workflow Scripting', 'percentage' => 85],
-                ['name' => 'Backend Task Scheduling / Queues', 'percentage' => 90],
+                'AI Prompt Engineering',
+                'Automated Workflow Scripting',
+                'Backend Task Scheduling / Queues',
             ],
         ];
 
         foreach ($skillsData as $categoryName => $skills) {
-            // Dynamically query the category ID that was just seeded
-            $category = Category::where('name', $categoryName)->first();
+            $category = Category::firstOrCreate(['name' => $categoryName]);
 
-            if ($category) {
-                foreach ($skills as $skill) {
-                    Skill::create([
-                        'category_id' => $category->id,
-                        'name' => $skill['name'],
-                        'percentage' => $skill['percentage'],
-                    ]);
-                }
+            foreach ($skills as $skillName) {
+                Skill::create([
+                    'category_id' => $category->id,
+                    'name' => $skillName,
+                ]);
             }
         }
     }

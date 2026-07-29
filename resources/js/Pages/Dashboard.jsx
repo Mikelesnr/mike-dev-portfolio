@@ -23,6 +23,7 @@ export default function Dashboard({ categories = [], projects = [] }) {
         description: "",
         techstack: "",
         deployment: "",
+        skill_ids: [],
     });
     const videoForm = useForm({ video_url: "" });
 
@@ -35,6 +36,7 @@ export default function Dashboard({ categories = [], projects = [] }) {
             description: project.description || "",
             techstack: project.techstack || "",
             deployment: project.deployment || "",
+            skill_ids: (project.skills ?? []).map((s) => s.id),
         });
     };
 
@@ -142,6 +144,7 @@ export default function Dashboard({ categories = [], projects = [] }) {
                                 {activeTab === "projects" && (
                                     <ProjectsTab
                                         projects={projects}
+                                        categories={categories}
                                         projectForm={projectForm}
                                         editingProjectId={editingProjectId}
                                         startEditProject={startEditProject}
