@@ -16,6 +16,11 @@ class Project extends Model
         'description',
         'techstack',
         'deployment',
+        'is_featured',
+    ];
+
+    protected $casts = [
+        'is_featured' => 'boolean',
     ];
 
     /**
@@ -25,5 +30,13 @@ class Project extends Model
     public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class);
+    }
+
+    /**
+     * The customer(s) / business owner(s) this project was built for.
+     */
+    public function customers(): BelongsToMany
+    {
+        return $this->belongsToMany(Customer::class);
     }
 }

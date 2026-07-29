@@ -33,8 +33,9 @@ class SkillSeeder extends Seeder
                 'Laravel',
                 'React',
                 'Inertia.js',
-                'Tailwind CSS',
                 'Next.js',
+                'Prisma',
+                'Tailwind CSS',
             ],
             'Offline-First & Data Sync' => [
                 'Dexie.js (IndexedDB)',

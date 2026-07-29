@@ -154,6 +154,20 @@ export default function ProjectForm({
                 </div>
             </div>
 
+            <div className="flex items-center gap-2">
+                <input
+                    type="checkbox"
+                    id="is_featured"
+                    checked={Boolean(projectForm.data.is_featured)}
+                    onChange={(e) =>
+                        projectForm.setData("is_featured", e.target.checked)
+                    }
+                />
+                <label htmlFor="is_featured" className="text-xs font-bold uppercase">
+                    Show in Featured Projects on the homepage
+                </label>
+            </div>
+
             <div className="flex items-center">
                 <button
                     type="submit"
