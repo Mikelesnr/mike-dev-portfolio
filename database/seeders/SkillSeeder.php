@@ -34,6 +34,7 @@ class SkillSeeder extends Seeder
                 'React',
                 'Inertia.js',
                 'Tailwind CSS',
+                'Next.js',
             ],
             'Offline-First & Data Sync' => [
                 'Dexie.js (IndexedDB)',

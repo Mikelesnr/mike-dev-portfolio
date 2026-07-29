@@ -23,7 +23,7 @@ class ProjectSeeder extends Seeder
                 'description' => 'Booking-focused website for a guest house, built to give guests a fast, mobile-friendly way to view rooms, amenities and rates and get in touch directly.',
                 'techstack' => 'Laravel, Tailwind CSS',
                 'deployment' => 'Live production site',
-                'skill_names' => ['PHP', 'Laravel', 'Tailwind CSS', 'HTML & CSS', 'Git & GitHub Workflows'],
+                'skill_names' => ['JavaScript', 'Next.js', 'Tailwind CSS', 'HTML & CSS', 'Git & GitHub Workflows'],
             ],
             [
                 'name' => 'Aligned Surveyors',
