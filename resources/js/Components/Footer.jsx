@@ -1,26 +1,31 @@
 import React from "react";
+import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-container">
-                <p>Address: 3 Alexander Road, Highlands, Harare, Zimbabwe</p>
+                <SocialLinks className="footer-social-links" />
+
+                <p>Harare, Zimbabwe</p>
                 <p>
                     <a
                         href="tel:+263773270659"
                         className="footer-link"
-                        target="blank"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
-                        Tel: +263773270659
+                        Tel: +263 77 327 0659
                     </a>
                 </p>
                 <p>
                     <a
                         href="tel:+263717989439"
                         className="footer-link"
-                        target="blank"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
-                        Tel: +263717989439
+                        Tel: +263 71 798 9439
                     </a>
                 </p>
                 <p>
@@ -28,22 +33,11 @@ const Footer = () => {
                     <a
                         href="mailto:michael@michaelmwanza.site"
                         className="footer-link"
-                        target="blank"
                     >
                         michael@michaelmwanza.site
                     </a>
                 </p>
-                <p>
-                    LinkedIn:{" "}
-                    <a
-                        href="https://www.linkedin.com/in/michael-mwanza-n"
-                        className="footer-link"
-                        target="blank"
-                    >
-                        https://www.linkedin.com/in/michael-mwanza-n
-                    </a>
-                </p>
-                <p>© 2024 Michael Mwanza</p>
+                <p>© {new Date().getFullYear()} Michael Mwanza</p>
             </div>
         </footer>
     );

@@ -33,6 +33,8 @@ class SkillSeeder extends Seeder
                 'Laravel',
                 'React',
                 'Inertia.js',
+                'Next.js',
+                'Prisma',
                 'Tailwind CSS',
             ],
             'Offline-First & Data Sync' => [

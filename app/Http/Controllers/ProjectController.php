@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function index(): JsonResponse
     {
         // ⚡ Resolved P1005: Added all 5 arguments to satisfy static analysis
-        $projects = Project::with('skills')->paginate(3, ['*'], 'page', null, null);
+        $projects = Project::with(['skills', 'customers'])->paginate(3, ['*'], 'page', null, null);
         return response()->json($projects);
     }
 
@@ -31,12 +31,13 @@ class ProjectController extends Controller
             'description' => 'required|string',
             'techstack' => 'required|string',
             'deployment' => 'required|string',
+            'is_featured' => 'sometimes|boolean',
             'skill_ids' => 'array',
             'skill_ids.*' => 'exists:skills,id',
         ]);
 
         $project = Project::create($request->only([
-            'url', 'name', 'description', 'techstack', 'deployment',
+            'url', 'name', 'description', 'techstack', 'deployment', 'is_featured',
         ]));
 
         $project->skills()->sync($request->input('skill_ids', []));
@@ -80,13 +81,14 @@ class ProjectController extends Controller
             'description' => 'required|string',
             'techstack' => 'required|string',
             'deployment' => 'required|string',
+            'is_featured' => 'sometimes|boolean',
             'skill_ids' => 'array',
             'skill_ids.*' => 'exists:skills,id',
         ]);
 
         $project = Project::findOrFail($id);
         $project->update($request->only([
-            'url', 'name', 'description', 'techstack', 'deployment',
+            'url', 'name', 'description', 'techstack', 'deployment', 'is_featured',
         ]));
         $project->skills()->sync($request->input('skill_ids', []));
 
