@@ -17,9 +17,12 @@ export default function TimezoneBadge() {
     }, []);
 
     return (
-        <p className="timezone-badge">
+        <div className="timezone-badge">
             <span className="timezone-badge-dot"></span>
-            {time} CAT (UTC+2) in Harare — happy to work across time zones
-        </p>
+            <span>
+                My time is {time} CAT (UTC+2) in Harare — happy to work across
+                time zones
+            </span>
+        </div>
     );
 }
