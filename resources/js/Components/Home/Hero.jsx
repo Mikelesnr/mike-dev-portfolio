@@ -1,5 +1,6 @@
 import React from "react";
 import SocialLinks from "../SocialLinks";
+import TimezoneBadge from "./TimezoneBadge";
 
 export default function Hero() {
     return (
@@ -10,10 +11,11 @@ export default function Hero() {
                     <h1 className="myh1">I'm Michael Mwanza</h1>
                     <h2>Fullstack Web Developer, based in Harare, Zimbabwe</h2>
                     <p className="hero-tagline">
-                        I design, build and ship full products end to end,
+                        I design, build and ship full products end to end —
                         currently building an offline-first POS platform for
                         small businesses across Zimbabwe and SADC.
                     </p>
+                    <TimezoneBadge />
                     <div className="buttons">
                         <a href="/contact" className="hire-btn btn">
                             Hire Me
