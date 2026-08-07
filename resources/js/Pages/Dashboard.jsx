@@ -26,6 +26,7 @@ export default function Dashboard({ categories = [], projects = [], customers = 
         techstack: "",
         deployment: "",
         is_featured: false,
+        is_hobby: false,
         skill_ids: [],
     });
     const customerForm = useForm({
@@ -33,6 +34,7 @@ export default function Dashboard({ categories = [], projects = [], customers = 
         logo_url: "",
         project_id: "",
     });
+    const categoryForm = useForm({ name: "" });
     const videoForm = useForm({ video_url: "" });
 
     // Project Actions
@@ -45,8 +47,27 @@ export default function Dashboard({ categories = [], projects = [], customers = 
             techstack: project.techstack || "",
             deployment: project.deployment || "",
             is_featured: Boolean(project.is_featured),
+            is_hobby: Boolean(project.is_hobby),
             skill_ids: (project.skills ?? []).map((s) => s.id),
         });
+    };
+
+    // Category Actions
+    const handleCategorySubmit = (e) => {
+        e.preventDefault();
+        categoryForm.post(route("breeze.categories.store"), {
+            onSuccess: () => categoryForm.reset(),
+        });
+    };
+
+    const handleCategoryDelete = (id, name) => {
+        if (
+            confirm(
+                `Delete "${name}"? This also deletes every skill in this category.`,
+            )
+        ) {
+            categoryForm.delete(route("admin.categories.destroy", id));
+        }
     };
 
     // Customer Actions
@@ -202,6 +223,13 @@ export default function Dashboard({ categories = [], projects = [], customers = 
                                     <SkillsTab
                                         categories={categories}
                                         isAdmin={isAdmin}
+                                        categoryForm={categoryForm}
+                                        handleCategorySubmit={
+                                            handleCategorySubmit
+                                        }
+                                        handleCategoryDelete={
+                                            handleCategoryDelete
+                                        }
                                     />
                                 )}
                                 {activeTab === "customers" && (

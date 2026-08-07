@@ -168,6 +168,20 @@ export default function ProjectForm({
                 </label>
             </div>
 
+            <div className="flex items-center gap-2">
+                <input
+                    type="checkbox"
+                    id="is_hobby"
+                    checked={Boolean(projectForm.data.is_hobby)}
+                    onChange={(e) =>
+                        projectForm.setData("is_hobby", e.target.checked)
+                    }
+                />
+                <label htmlFor="is_hobby" className="text-xs font-bold uppercase">
+                    Hobby / side project (not commissioned client work)
+                </label>
+            </div>
+
             <div className="flex items-center">
                 <button
                     type="submit"
