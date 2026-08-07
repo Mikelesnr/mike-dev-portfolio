@@ -1,5 +1,6 @@
 import React from "react";
 import SocialLinks from "../SocialLinks";
+import TimezoneBadge from "./TimezoneBadge";
 
 export default function Hero() {
     return (
@@ -14,6 +15,7 @@ export default function Hero() {
                         currently building an offline-first POS platform for
                         small businesses across Zimbabwe and SADC.
                     </p>
+                    <TimezoneBadge />
                     <div className="buttons">
                         <a href="/contact" className="hire-btn btn">
                             Hire Me

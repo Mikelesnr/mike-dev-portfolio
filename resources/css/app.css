@@ -326,6 +326,28 @@ a {
     margin-bottom: 4px !important;
 }
 
+.timezone-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--moss-strong);
+    border: 1px solid rgba(122, 155, 110, 0.3);
+    background-color: rgba(122, 155, 110, 0.08);
+    border-radius: 999px;
+    padding: 6px 14px;
+    margin: 4px 0 6px;
+}
+
+.timezone-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--moss-strong);
+    flex-shrink: 0;
+}
+
 .into-container h2 {
     font-size: 24px;
     font-weight: 400;
