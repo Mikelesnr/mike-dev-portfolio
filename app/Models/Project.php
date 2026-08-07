@@ -17,10 +17,12 @@ class Project extends Model
         'techstack',
         'deployment',
         'is_featured',
+        'is_hobby',
     ];
 
     protected $casts = [
         'is_featured' => 'boolean',
+        'is_hobby' => 'boolean',
     ];
 
     /**

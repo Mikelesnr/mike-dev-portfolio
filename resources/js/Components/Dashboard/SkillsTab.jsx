@@ -1,12 +1,27 @@
 import React from "react";
 import SkillsManager from "./SkillsManager";
+import CategoryManager from "./CategoryManager";
 
-export default function SkillsTab({ categories, isAdmin = false }) {
+export default function SkillsTab({
+    categories,
+    isAdmin = false,
+    categoryForm,
+    handleCategorySubmit,
+    handleCategoryDelete,
+}) {
     return (
         <div>
             {isAdmin ? (
                 // ADMIN VIEW: CRUD Operations
-                <SkillsManager categories={categories} />
+                <>
+                    <CategoryManager
+                        categories={categories}
+                        categoryForm={categoryForm}
+                        handleCategorySubmit={handleCategorySubmit}
+                        handleCategoryDelete={handleCategoryDelete}
+                    />
+                    <SkillsManager categories={categories} />
+                </>
             ) : (
                 // PUBLIC/READ-ONLY VIEW: which projects prove each skill
                 <>

@@ -9,12 +9,25 @@ export default function ProjectCard({ project, onPreview }) {
 
     return (
         <div className="info project-info">
-            <span className="project-status">
-                <span className="project-status-dot"></span>
-                {isLive ? "Live" : "In development"}
-            </span>
+            <div className="project-badges">
+                <span className="project-status">
+                    <span className="project-status-dot"></span>
+                    {isLive ? "Live" : "In development"}
+                </span>
+                <span
+                    className={`project-type-badge ${project.is_hobby ? "project-type-hobby" : "project-type-client"}`}
+                >
+                    {project.is_hobby ? "Hobby Project" : "Professional Build"}
+                </span>
+            </div>
 
             <h3 className="body-h3">{project.name}</h3>
+
+            {project.is_hobby && (
+                <p className="project-hobby-note">
+                    Personal project, not commissioned work — free to explore.
+                </p>
+            )}
 
             {project.customers?.length > 0 && (
                 <p className="project-client">
