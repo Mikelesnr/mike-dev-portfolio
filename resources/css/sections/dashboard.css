@@ -1,0 +1,365 @@
+/* ==========================================================================
+   sections/dashboard.css — Admin panel (Dashboard + AuthenticatedLayout)
+   ========================================================================== */
+
+/* ---------- Auth layout wrapper (used by AuthenticatedLayout) ---------- */
+.auth-page {
+    min-height: 100vh;
+    background-color: var(--bg);
+    color: var(--ink);
+}
+
+.auth-header {
+    background-color: var(--bg-raised);
+    border-bottom: 1px solid var(--hairline);
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    backdrop-filter: blur(8px);
+}
+
+.auth-header-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.auth-header-title-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+.auth-header-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-transform: none;
+}
+
+.auth-header-user {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.auth-header-user-label {
+    color: var(--ink-faint);
+}
+
+.auth-header-user-name {
+    color: var(--brass);
+    font-weight: 600;
+}
+
+.auth-main {
+    min-height: calc(100vh - 140px);
+}
+
+/* ---------- Dashboard page container ----------------------------------- */
+.dashboard-page {
+    padding: 32px 0 64px;
+}
+
+.dashboard-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.dashboard-panel {
+    padding: 32px;
+    min-width: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Sidebar ---------------------------------------------------- */
+.dashboard-sidebar {
+    background-color: var(--bg-raised);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    position: sticky;
+    top: 88px;
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-sidebar-heading {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 14px 4px;
+}
+
+.dashboard-sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dashboard-sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--ink-muted);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        color 0.2s var(--ease),
+        border-color 0.2s var(--ease);
+}
+
+.dashboard-sidebar-btn:hover {
+    background-color: var(--bg-soft);
+    color: var(--ink);
+}
+
+.dashboard-sidebar-btn.is-active {
+    background-color: var(--brass);
+    color: #FFFFFF;
+    font-weight: 600;
+    border-color: var(--brass);
+}
+
+.dashboard-sidebar-icon {
+    font-size: 16px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* ---------- Admin notice ----------------------------------------------- */
+.admin-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 22px;
+    border-radius: var(--radius-md);
+    background-color: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    color: var(--danger);
+    margin-bottom: 24px;
+}
+
+.admin-notice-icon {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.admin-notice-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--danger);
+    margin: 0 0 4px;
+}
+
+.admin-notice-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--danger);
+    margin: 0;
+}
+
+/* ---------- Tab headers ----------------------------------------------- */
+.dash-tab-header {
+    margin-bottom: 24px;
+}
+
+.dash-tab-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+}
+
+.dash-tab-sub {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    margin: 0;
+    max-width: 60ch;
+}
+
+/* ---------- Generic dash card ----------------------------------------- */
+.dash-card {
+    background-color: var(--bg-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: 20px;
+}
+
+.dash-card-spaced {
+    margin-bottom: 24px;
+}
+
+.dash-card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 10px;
+}
+
+.dash-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ---------- Tables ---------------------------------------------------- */
+.dash-table-heading {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 12px;
+}
+
+.dash-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+}
+
+.dash-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.dash-table thead {
+    background-color: var(--bg-soft);
+}
+
+.dash-table th {
+    padding: 12px 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.dash-table th.text-right {
+    text-align: right;
+}
+
+.dash-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--ink);
+    vertical-align: middle;
+}
+
+.dash-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.dash-table tbody tr:hover {
+    background-color: var(--bg-soft);
+}
+
+.dash-td-name {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.dash-td-mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+}
+
+.dash-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.dash-empty {
+    text-align: center;
+    padding: 24px;
+    color: var(--ink-faint);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.dash-empty-inline {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin: 0;
+}
+
+/* ---------- Skill rows ------------------------------------------------ */
+.dash-skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.dash-skill-row:last-child {
+    border-bottom: none;
+}
+
+.dash-skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.dash-skill-projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+/* ---------- Skills manager spacing ----------------------------------- */
+.dash-skills-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

@@ -1,0 +1,179 @@
+/* ==========================================================================
+   sections/about.css — About Me section
+   ========================================================================== */
+
+.about-me-section {
+    background-color: var(--bg-raised);
+    border: 1px solid var(--hairline);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 40px;
+    align-items: start;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.about-card-wrap {
+    width: 100%;
+}
+
+/* ---------- Facts list ------------------------------------------------- */
+.about-facts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.about-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.about-fact:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.about-fact-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.about-fact-value {
+    font-size: 15px;
+    color: var(--ink);
+}
+
+.about-fact-link {
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s var(--ease);
+}
+
+.about-fact-link:hover {
+    color: var(--brass);
+}
+
+.about-fact-copy {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 2px 8px;
+    opacity: 0;
+    transition: opacity 0.2s var(--ease);
+}
+
+.about-fact-link:hover .about-fact-copy {
+    opacity: 1;
+}
+
+.about-fact-plain {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-fact-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--moss);
+    box-shadow: 0 0 0 3px var(--moss-soft);
+}
+
+.about-fact-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brass);
+    text-decoration: none;
+    border: 1px solid var(--brass);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    width: fit-content;
+    transition:
+        background-color 0.2s var(--ease),
+        color 0.2s var(--ease),
+        transform 0.2s var(--ease);
+}
+
+.about-fact-download:hover {
+    background-color: var(--brass);
+    color: #FFFFFF;
+    transform: translateY(-1px);
+}
+
+/* ---------- Video frame ----------------------------------------------- */
+.about-video-wrap {
+    width: 100%;
+}
+
+.about-video-frame {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--hairline);
+    background-color: var(--bg-sunken);
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.about-video-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    pointer-events: none;
+    transition: border-color 0.4s var(--ease);
+}
+
+.about-video-frame:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.about-video-frame:hover::after {
+    border-color: var(--brass);
+}
+
+.about-video-iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.about-video-caption {
+    margin: 12px 2px 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}

@@ -1,0 +1,307 @@
+/* ==========================================================================
+   components/forms.css — All form inputs, labels, errors
+   ========================================================================== */
+
+/* ---------- Field wrapper ---------------------------------------------- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 14px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition:
+        border-color 0.2s var(--ease),
+        box-shadow 0.2s var(--ease);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(200, 127, 10, 0.14);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ---------- Breeze TextInput primitive --------------------------------- */
+.text-input {
+    width: 100%;
+    padding: 10px 14px;
+    background-color: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    transition:
+        border-color 0.2s var(--ease),
+        box-shadow 0.2s var(--ease),
+        background-color 0.2s var(--ease);
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(200, 127, 10, 0.14);
+    background-color: var(--bg-raised);
+}
+
+.text-input::placeholder {
+    color: var(--ink-faint);
+}
+
+.text-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---------- Labels + errors -------------------------------------------- */
+.input-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+}
+
+.input-error {
+    color: var(--danger);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin: 4px 0 0;
+}
+
+/* ---------- Dashboard form fields -------------------------------------- */
+.dash-input,
+.dash-select {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition:
+        border-color 0.2s var(--ease),
+        box-shadow 0.2s var(--ease);
+}
+
+.dash-input:focus,
+.dash-select:focus {
+    outline: none;
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(200, 127, 10, 0.14);
+}
+
+/* ---------- Checkboxes -------------------------------------------------- */
+.checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--brass);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.dash-check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dash-check-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--brass);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.dash-check-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    cursor: pointer;
+}
+
+/* ---------- Feedback messages ------------------------------------------ */
+.success-msg {
+    color: var(--moss);
+    font-size: 0.9rem;
+    margin: 4px 0 0;
+}
+
+.error-msg {
+    color: var(--danger);
+    font-size: 0.9rem;
+    margin: 4px 0 0;
+}
+
+.auth-saved-note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin: 0;
+}
+
+/* ---------- Dashboard form layout -------------------------------------- */
+.dash-form {
+    background-color: var(--bg-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dash-form-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 4px;
+}
+
+.dash-form-title.is-editing {
+    color: var(--brass);
+}
+
+.dash-form-sub {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    margin: 0 0 8px;
+}
+
+.dash-form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.dash-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dash-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.dash-label-block {
+    margin-bottom: 4px;
+}
+
+.dash-cat-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 6px;
+}
+
+.dash-inline-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.dash-inline-form .dash-input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.dash-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+/* ---------- Auth form layout ------------------------------------------- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.auth-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.auth-form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.auth-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    cursor: pointer;
+}
+
+.auth-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.auth-form-actions-split {
+    justify-content: space-between;
+}
+
+/* ---------- Contact form (uses .form-group, no extra rules needed) ----- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 8px;
+    text-align: left;
+}

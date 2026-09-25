@@ -1,0 +1,298 @@
+/* ==========================================================================
+   components/buttons.css — All button variants
+   ========================================================================== */
+
+/* ---------- Base button (.btn) ---------------------------------------- */
+.btn {
+    border: 1px solid transparent;
+    color: var(--bg);
+    padding: 14px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 700;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition:
+        transform 0.15s var(--ease),
+        box-shadow 0.15s var(--ease);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.buttons {
+    text-align: center;
+}
+
+/* ---------- Hero / CTA variants --------------------------------------- */
+.hire-btn {
+    background-color: var(--brass);
+    color: #FFFFFF;
+}
+
+.btn-download-cv {
+    background-color: transparent;
+    color: var(--ink);
+    border-color: var(--hairline-strong);
+}
+
+.btn-projects {
+    background-color: transparent;
+    color: var(--ink);
+    border-color: var(--hairline-strong);
+}
+
+.work-btn {
+    background-color: transparent;
+    color: var(--ink);
+    border-color: var(--hairline-strong);
+}
+
+.button-disabled {
+    background-color: var(--bg-sunken);
+    border: 1px solid var(--hairline);
+    color: var(--ink-faint);
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ---------- Card action buttons --------------------------------------- */
+.btn-launch {
+    background-color: var(--brass);
+    color: #FFFFFF;
+    border: none;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-launch:hover {
+    background-color: var(--brass-strong);
+}
+
+.btn-source {
+    background-color: transparent;
+    color: var(--ink-muted);
+    border: 1px solid var(--hairline-strong);
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn-source:hover {
+    color: var(--ink);
+    border-color: var(--ink-muted);
+}
+
+/* ---------- Form submit ------------------------------------------------ */
+.btn-submit {
+    align-self: flex-start;
+    padding: 13px 26px;
+    background-color: var(--brass);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        transform 0.2s var(--ease),
+        box-shadow 0.2s var(--ease);
+}
+
+.btn-submit:hover:not(:disabled) {
+    background-color: var(--brass-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---------- Breeze primitives (used in auth + dashboard) -------------- */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--brass);
+    color: #ffffff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        transform 0.2s var(--ease),
+        box-shadow 0.2s var(--ease);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--brass-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--ink);
+    border: 1px solid var(--hairline-strong);
+    padding: 11px 22px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        border-color 0.2s var(--ease),
+        color 0.2s var(--ease);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--bg-soft);
+    border-color: var(--ink-muted);
+}
+
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--danger);
+    color: #ffffff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        filter 0.2s var(--ease),
+        transform 0.2s var(--ease),
+        box-shadow 0.2s var(--ease);
+}
+
+.btn-danger:hover:not(:disabled) {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-danger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ---------- Dashboard buttons ----------------------------------------- */
+.dash-btn-primary {
+    background-color: var(--brass);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        transform 0.2s var(--ease),
+        box-shadow 0.2s var(--ease);
+}
+
+.dash-btn-primary:hover:not(:disabled) {
+    background-color: var(--brass-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.dash-btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.dash-btn-delete {
+    background-color: var(--danger);
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        transform 0.2s var(--ease);
+}
+
+.dash-btn-delete:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.dash-btn-delete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dash-btn-x {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--danger);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        color 0.2s var(--ease);
+}
+
+.dash-btn-x:hover {
+    background-color: rgba(220, 38, 38, 0.12);
+}

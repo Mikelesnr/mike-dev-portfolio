@@ -1,0 +1,40 @@
+/* ==========================================================================
+   utilities.css — Helper classes, animations, one-off utilities
+   ========================================================================== */
+
+/* ---------- Global shimmer animation (used by CTA banner) ------------- */
+/* (Defined in sections/customers.css — kept there since it's CTA-specific) */
+
+/* ---------- Screen-reader-only text ------------------------------------ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- Truncation helpers ----------------------------------------- */
+.body-p-truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ---------- Skill list toggles (legacy — safe to remove if unused) ---- */
+.skill-list-clamped {
+    max-height: 44px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+.skill-list-expanded {
+    max-height: none;
+}
