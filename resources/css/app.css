@@ -3999,6 +3999,168 @@ a:hover {
 }
 
 /* ==========================================================================
+   Project detail modal — full-text view
+   ========================================================================== */
+
+.project-detail-modal {
+    /* Override the iframe modal's fixed sizing — this one scrolls internally */
+    width: 96vw;
+    max-width: 720px;
+    height: auto;
+    max-height: 88vh;
+}
+
+.project-detail-body {
+    padding: 28px 32px 32px;
+    overflow-y: auto;
+    background-color: var(--bg-raised);
+}
+
+/* ---------- Meta row ------------------------------------------------- */
+.project-detail-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 16px 18px;
+    background-color: var(--bg-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+}
+
+.project-detail-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.project-detail-meta-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.project-detail-meta-value {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink);
+    overflow-wrap: break-word;
+}
+
+.project-detail-meta-mono {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+}
+
+/* ---------- Description --------------------------------------------- */
+.project-detail-description-wrap {
+    margin-bottom: 24px;
+}
+
+.project-detail-description-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 12px;
+}
+
+.project-detail-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0;
+    white-space: pre-line;   /* preserves paragraph breaks in the source */
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* ---------- Skills chips -------------------------------------------- */
+.project-detail-skills {
+    padding-top: 20px;
+    border-top: 1px solid var(--hairline);
+    margin-bottom: 24px;
+}
+
+.project-detail-skills-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 12px;
+}
+
+.project-detail-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ---------- Actions ------------------------------------------------- */
+.project-detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hairline);
+}
+
+/* ---------- Project card description + read-more -------------------- */
+.project-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    margin: 10px 0 12px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Collapsed state — clamp to 3 lines */
+.project-description.is-truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Expanded state (if you ever want inline expand) */
+.project-description.is-expanded {
+    display: block;
+    overflow: visible;
+}
+
+/* "Read more →" button */
+.project-readmore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    margin: 0 0 14px;
+    background: transparent;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    cursor: pointer;
+    transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.project-readmore-btn:hover {
+    color: var(--brass-strong);
+    transform: translateX(2px);
+}
+
+/* ==========================================================================
    Large screens
    ========================================================================== */
 @media (min-width: 1700px) {
@@ -4560,6 +4722,24 @@ a:hover {
         padding: 22px;
     }
 
+      .project-detail-modal {
+        max-width: 100%;
+        max-height: 92vh;
+    }
+
+    .project-detail-body {
+        padding: 22px 20px 24px;
+    }
+
+    .project-detail-meta {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .project-detail-description {
+        font-size: 0.95rem;
+    }
+
 }
 
 @media (max-width: 520px) {
@@ -4571,6 +4751,10 @@ a:hover {
 
 /* ---------- Reduced motion ---------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
+
+    .project-detail-modal {
+        animation: none !important;
+    }
 
       .guest-brand,
     .guest-brand-primary,

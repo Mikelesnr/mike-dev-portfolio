@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SkillTag from "./SkillTag";
 
-export default function ProjectCard({ project, onPreview }) {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [isSkillsExpanded, setIsSkillsExpanded] = useState(false);
-
+export default function ProjectCard({ project, onPreview, onReadMore }) {
     const isLive = Boolean(project.url);
+    const skills = project.skills || [];
+    const descriptionRef = useRef(null);
+    const [isOverflowing, setIsOverflowing] = useState(false);
 
-    // ---------- Deduplicate skills against techstack text ----------
-    const techNames = (project.techstack || "")
-        .split(/[,·|•/]/)
-        .map((s) => s.trim().toLowerCase())
-        .filter(Boolean);
-
-    const remainingSkills = (project.skills || []).filter(
-        (s) => !techNames.includes((s.name || "").toLowerCase())
-    );
-
-    const hasManySkills = remainingSkills.length > 4;
+    // Detect whether the description actually overflows 3 lines
+    useEffect(() => {
+        const el = descriptionRef.current;
+        if (!el) return;
+        // scrollHeight > clientHeight means text is clipped by line-clamp
+        setIsOverflowing(el.scrollHeight > el.clientHeight + 2);
+    }, [project.description]);
 
     return (
         <div className="project-info">
@@ -28,11 +24,10 @@ export default function ProjectCard({ project, onPreview }) {
                     {isLive ? "Live" : "In development"}
                 </span>
                 <span
-                    className={`project-type-badge ${
-                        project.is_hobby
+                    className={`project-type-badge ${project.is_hobby
                             ? "project-type-hobby"
                             : "project-type-client"
-                    }`}
+                        }`}
                 >
                     {project.is_hobby ? "Hobby Project" : "Professional Build"}
                 </span>
@@ -54,51 +49,34 @@ export default function ProjectCard({ project, onPreview }) {
                 </p>
             )}
 
-            {/* ---------- Description --------------------------------- */}
+            {/* ---------- Clamped description ------------------------- */}
             <p
-                className={`body-p project-description ${
-                    isExpanded ? "" : "body-p-truncated"
-                } clickable-text`}
-                onClick={() => setIsExpanded(!isExpanded)}
-                title="Click to expand description"
+                ref={descriptionRef}
+                className="body-p project-description is-truncated"
             >
                 {project.description}
-                {!isExpanded && (
-                    <span className="project-readmore"> … (read more)</span>
-                )}
             </p>
 
-            {/* ---------- Tech stack ---------------------------------- */}
-            <p className="project-techstack">{project.techstack}</p>
+            {/* Only show this if the description is actually clipped */}
+            {isOverflowing && (
+                <button
+                    type="button"
+                    className="project-readmore-btn"
+                    onClick={() => onReadMore?.(project)}
+                >
+                    Read more
+                    <span aria-hidden="true"> →</span>
+                </button>
+            )}
 
-            {/* ---------- Remaining skill chips (deduped) ------------- */}
-            {remainingSkills.length > 0 && (
+            {/* ---------- Skill chips --------------------------------- */}
+            {skills.length > 0 && (
                 <div className="project-skills">
-                    <div
-                        className={`skill-card-projects ${
-                            isSkillsExpanded
-                                ? "skill-list-expanded"
-                                : "skill-list-clamped"
-                        }`}
-                    >
-                        {remainingSkills.map((skill) => (
+                    <div className="skill-card-projects">
+                        {skills.map((skill) => (
                             <SkillTag key={skill.id} skill={skill} />
                         ))}
                     </div>
-
-                    {hasManySkills && (
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setIsSkillsExpanded(!isSkillsExpanded)
-                            }
-                            className="project-skills-toggle"
-                        >
-                            {isSkillsExpanded
-                                ? "Show fewer"
-                                : "Show all skills"}
-                        </button>
-                    )}
                 </div>
             )}
 
