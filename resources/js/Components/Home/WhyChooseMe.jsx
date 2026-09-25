@@ -1,4 +1,5 @@
 import React from "react";
+import { Reveal } from "../../Hooks/useReveal";
 import ValueCard from "./ValueCard";
 
 const values = [
@@ -28,27 +29,44 @@ export default function WhyChooseMe() {
     return (
         <section id="why-choose-me" className="section why-choose-me-section">
             <div className="container container-wide">
-                <h2 className="body-h2">Why Work With Me</h2>
+                <header className="section-header">
+                    <h2 className="body-h2">Why Work With Me</h2>
+                    <span className="section-underline" aria-hidden="true" />
+                </header>
+
                 <p className="ledger-stub">
                     <span>how I approach every build</span>
                 </p>
 
-                <div className="content values-grid">
-                    {values.map((value) => (
-                        <ValueCard key={value.title} {...value} />
+                <div className="values-grid">
+                    {values.map((value, i) => (
+                        <Reveal
+                            key={value.title}
+                            className="value-card-wrap"
+                            delay={0.05 + i * 0.08}
+                            y={28}
+                        >
+                            <ValueCard
+                                title={value.title}
+                                description={value.description}
+                                index={i + 1}
+                            />
+                        </Reveal>
                     ))}
                 </div>
 
-                <div className="cta-banner">
-                    <h3>Have a project in mind?</h3>
-                    <p className="body-p">
-                        Let's talk through what you need and whether I'm the
-                        right fit to build it.
-                    </p>
-                    <a href="/contact" className="btn hire-btn">
-                        Start a Conversation
-                    </a>
-                </div>
+                <Reveal delay={0.15} y={20}>
+                    <div className="cta-banner">
+                        <h3>Have a project in mind?</h3>
+                        <p className="body-p">
+                            Let&apos;s talk through what you need and whether
+                            I&apos;m the right fit to build it.
+                        </p>
+                        <a href="/contact" className="btn hire-btn">
+                            Start a Conversation
+                        </a>
+                    </div>
+                </Reveal>
             </div>
         </section>
     );

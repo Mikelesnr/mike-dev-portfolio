@@ -1,3 +1,4 @@
+import React from "react";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -25,25 +26,20 @@ export default function UpdateProfileInformation({
 
     return (
         <section className={className}>
-            <header>
-                <h2 className="text-xl font-bold text-[#d9ee60]">
-                    Profile Information
-                </h2>
-                <p className="mt-1 text-sm text-gray-400">
-                    Update your account's profile information and email address.
+            <header className="auth-card-header">
+                <h2 className="auth-card-title">Profile Information</h2>
+                <p className="auth-card-sub">
+                    Update your account&apos;s profile information and email
+                    address.
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel
-                        htmlFor="name"
-                        value="Name"
-                        className="text-white"
-                    />
+            <form onSubmit={submit} className="auth-form">
+                <div className="form-group">
+                    <InputLabel htmlFor="name" value="Name" />
                     <TextInput
                         id="name"
-                        className="mt-1 block w-full bg-black/50 border-gray-700 text-white"
+                        className="mt-1 block w-full"
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
                         required
@@ -52,16 +48,12 @@ export default function UpdateProfileInformation({
                     <InputError className="mt-2" message={errors.name} />
                 </div>
 
-                <div>
-                    <InputLabel
-                        htmlFor="email"
-                        value="Email"
-                        className="text-white"
-                    />
+                <div className="form-group">
+                    <InputLabel htmlFor="email" value="Email" />
                     <TextInput
                         id="email"
                         type="email"
-                        className="mt-1 block w-full bg-black/50 border-gray-700 text-white"
+                        className="mt-1 block w-full"
                         value={data.email}
                         onChange={(e) => setData("email", e.target.value)}
                         required
@@ -71,20 +63,20 @@ export default function UpdateProfileInformation({
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (
-                    <div>
-                        <p className="mt-2 text-sm text-white">
-                            Your email address is unverified.
+                    <div className="auth-verify-note">
+                        <p>
+                            Your email address is unverified.{" "}
                             <Link
                                 href={route("verification.send")}
                                 method="post"
                                 as="button"
-                                className="rounded-md text-sm text-[#d9ee60] underline"
+                                className="auth-link"
                             >
                                 Click here to re-send the verification email.
                             </Link>
                         </p>
                         {status === "verification-link-sent" && (
-                            <div className="mt-2 text-sm font-medium text-green-400">
+                            <div className="auth-status">
                                 A new verification link has been sent to your
                                 email address.
                             </div>
@@ -92,13 +84,8 @@ export default function UpdateProfileInformation({
                     </div>
                 )}
 
-                <div className="flex items-center gap-4">
-                    <PrimaryButton
-                        disabled={processing}
-                        className="bg-[#d9ee60] text-black"
-                    >
-                        Save
-                    </PrimaryButton>
+                <div className="auth-form-actions">
+                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
                     <Transition
                         show={recentlySuccessful}
                         enter="transition ease-in-out"
@@ -106,7 +93,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-400">Saved.</p>
+                        <p className="auth-saved-note">Saved.</p>
                     </Transition>
                 </div>
             </form>

@@ -1,3 +1,4 @@
+import React from "react";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -45,22 +46,19 @@ export default function UpdatePasswordForm({ className = "" }) {
 
     return (
         <section className={className}>
-            <header>
-                <h2 className="text-xl font-bold text-[#d9ee60]">
-                    Update Password
-                </h2>
-                <p className="mt-1 text-sm text-gray-400">
-                    Ensure your account is using a long, random password to stay
-                    secure.
+            <header className="auth-card-header">
+                <h2 className="auth-card-title">Update Password</h2>
+                <p className="auth-card-sub">
+                    Ensure your account is using a long, random password to
+                    stay secure.
                 </p>
             </header>
 
-            <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
+            <form onSubmit={updatePassword} className="auth-form">
+                <div className="form-group">
                     <InputLabel
                         htmlFor="current_password"
                         value="Current Password"
-                        className="text-white"
                     />
                     <TextInput
                         id="current_password"
@@ -70,34 +68,33 @@ export default function UpdatePasswordForm({ className = "" }) {
                             setData("current_password", e.target.value)
                         }
                         type="password"
-                        className="mt-1 block w-full bg-black/50 border-gray-700 text-white"
+                        className="mt-1 block w-full"
+                        autoComplete="current-password"
                     />
                     <InputError
                         message={errors.current_password}
                         className="mt-2"
                     />
                 </div>
-                <div>
-                    <InputLabel
-                        htmlFor="password"
-                        value="New Password"
-                        className="text-white"
-                    />
+
+                <div className="form-group">
+                    <InputLabel htmlFor="password" value="New Password" />
                     <TextInput
                         id="password"
                         ref={passwordInput}
                         value={data.password}
                         onChange={(e) => setData("password", e.target.value)}
                         type="password"
-                        className="mt-1 block w-full bg-black/50 border-gray-700 text-white"
+                        className="mt-1 block w-full"
+                        autoComplete="new-password"
                     />
                     <InputError message={errors.password} className="mt-2" />
                 </div>
-                <div>
+
+                <div className="form-group">
                     <InputLabel
                         htmlFor="password_confirmation"
                         value="Confirm Password"
-                        className="text-white"
                     />
                     <TextInput
                         id="password_confirmation"
@@ -106,20 +103,17 @@ export default function UpdatePasswordForm({ className = "" }) {
                             setData("password_confirmation", e.target.value)
                         }
                         type="password"
-                        className="mt-1 block w-full bg-black/50 border-gray-700 text-white"
+                        className="mt-1 block w-full"
+                        autoComplete="new-password"
                     />
                     <InputError
                         message={errors.password_confirmation}
                         className="mt-2"
                     />
                 </div>
-                <div className="flex items-center gap-4">
-                    <PrimaryButton
-                        disabled={processing}
-                        className="bg-[#d9ee60] text-black"
-                    >
-                        Save
-                    </PrimaryButton>
+
+                <div className="auth-form-actions">
+                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
                     <Transition
                         show={recentlySuccessful}
                         enter="transition ease-in-out"
@@ -127,7 +121,7 @@ export default function UpdatePasswordForm({ className = "" }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-400">Saved.</p>
+                        <p className="auth-saved-note">Saved.</p>
                     </Transition>
                 </div>
             </form>

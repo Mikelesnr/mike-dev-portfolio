@@ -1,69 +1,111 @@
-import React from "react";
+import React, { useState } from "react";
+import { Reveal } from "../../Hooks/useReveal";
 
 export default function AboutMe({ introVideoUrl }) {
+    const [copied, setCopied] = useState(false);
+
+    const email = "michael@michaelmwanza.site";
+
+    const handleCopyEmail = async (e) => {
+        // Purely an enhancement — the mailto: link still works if this fails
+        e.preventDefault();
+        try {
+            await navigator.clipboard.writeText(email);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1800);
+        } catch (_) {
+            window.location.href = `mailto:${email}`;
+        }
+    };
+
+    const facts = [
+        {
+            label: "Email",
+            value: (
+                <a
+                    href={`mailto:${email}`}
+                    className="about-fact-link"
+                    onClick={handleCopyEmail}
+                    title="Click to copy"
+                >
+                    {email}
+                    <span className="about-fact-copy">
+                        {copied ? "Copied ✓" : "Copy"}
+                    </span>
+                </a>
+            ),
+        },
+        {
+            label: "Based in",
+            value: (
+                <span className="about-fact-plain">
+                    <span
+                        className="about-fact-dot"
+                        aria-hidden="true"
+                    ></span>
+                    Harare, Zimbabwe
+                </span>
+            ),
+        },
+        {
+            label: "Résumé",
+            value: (
+                <a
+                    href="/documents/mike-resume.pdf"
+                    className="about-fact-download"
+                    download
+                >
+                    Download CV
+                    <span aria-hidden="true">↧</span>
+                </a>
+            ),
+        },
+    ];
+
     return (
         <section id="about-me" className="section about-me-section">
             <div className="container container-about">
-                <h2 className="body-h2">About Me</h2>
-                <div
-                    className="content about-me-content"
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "30px",
-                    }}
-                >
-                    <div className="info profile-info">
-                        <h3 className="body-h3">Michael Mwanza</h3>
-                        <p className="font-p">
-                            <strong>Email:</strong>{" "}
-                            <a
-                                className="bg-light-a"
-                                href="mailto:michael@michaelmwanza.site"
-                            >
-                                michael@michaelmwanza.site
-                            </a>
-                        </p>
-                        <p className="font-p">
-                            <strong>Based in:</strong> Harare, Zimbabwe
-                        </p>
-                        <a
-                            href="/documents/mike-resume.pdf"
-                            className="btn btn-download-cv"
-                            download
-                        >
-                            Download CV
-                        </a>
-                    </div>
+                <header className="section-header">
+                    <h2 className="body-h2">About Me</h2>
+                    <span className="section-underline" aria-hidden="true" />
+                </header>
 
+                <div className="about-grid">
+                    {/* ---------- Left — facts card -------------------- */}
+                    <Reveal className="about-card-wrap" delay={0.05}>
+                        <div className="info profile-info about-card">
+                            <h3 className="body-h3 about-card-title">
+                                Michael Mwanza
+                            </h3>
+                            <p className="about-card-sub">
+                                Fullstack developer · Founder, Mom &amp; Pop POS
+                            </p>
+
+                            <ul className="about-facts">
+                                {facts.map((f) => (
+                                    <li key={f.label} className="about-fact">
+                                        <span className="about-fact-label">
+                                            {f.label}
+                                        </span>
+                                        <span className="about-fact-value">
+                                            {f.value}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </Reveal>
+
+                    {/* ---------- Right — video ------------------------ */}
                     {introVideoUrl && (
-                        <div
-                            className="about-video-container"
-                            style={{
-                                width: "100%",
-                                maxWidth: "800px",
-                                margin: "0 auto",
-                            }}
+                        <Reveal
+                            className="about-video-wrap"
+                            delay={0.15}
+                            y={32}
                         >
-                            <div
-                                style={{
-                                    position: "relative",
-                                    paddingBottom: "56.25%",
-                                    height: 0,
-                                    overflow: "hidden",
-                                    borderRadius: "14px",
-                                    border: "1px solid var(--hairline)",
-                                }}
-                            >
+                            <div className="about-video-frame">
                                 <iframe
-                                    style={{
-                                        position: "absolute",
-                                        top: 0,
-                                        left: 0,
-                                        width: "100%",
-                                        height: "100%",
-                                        border: 0,
-                                    }}
+                                    className="about-video-iframe"
                                     src={introVideoUrl}
                                     title="Michael Mwanza - Profile Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -71,7 +113,10 @@ export default function AboutMe({ introVideoUrl }) {
                                     allowFullScreen
                                 ></iframe>
                             </div>
-                        </div>
+                            <p className="about-video-caption">
+                                A short intro — who I am and what I build.
+                            </p>
+                        </Reveal>
                     )}
                 </div>
             </div>

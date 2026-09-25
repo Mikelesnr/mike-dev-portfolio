@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage, useForm } from "@inertiajs/react";
 
-// Import modular dashboard primitives
 import AdminNotice from "@/Components/Dashboard/AdminNotice";
 import Sidebar from "@/Components/Dashboard/Sidebar";
 import ProjectsTab from "@/Components/Dashboard/ProjectsTab";
@@ -18,7 +17,6 @@ export default function Dashboard({ categories = [], projects = [], customers = 
     const [editingProjectId, setEditingProjectId] = useState(null);
     const [editingCustomerId, setEditingCustomerId] = useState(null);
 
-    // Form Hooks
     const projectForm = useForm({
         name: "",
         url: "",
@@ -37,7 +35,7 @@ export default function Dashboard({ categories = [], projects = [], customers = 
     const categoryForm = useForm({ name: "" });
     const videoForm = useForm({ video_url: "" });
 
-    // Project Actions
+    // ---------- Project actions ---------------------------------------
     const startEditProject = (project) => {
         setEditingProjectId(project.id);
         projectForm.setData({
@@ -52,7 +50,28 @@ export default function Dashboard({ categories = [], projects = [], customers = 
         });
     };
 
-    // Category Actions
+    const cancelEditProject = () => {
+        setEditingProjectId(null);
+        projectForm.reset();
+    };
+
+    const handleProjectSubmit = (e) => {
+        e.preventDefault();
+        if (editingProjectId) {
+            projectForm.put(route("admin.projects.update", editingProjectId), {
+                onSuccess: () => {
+                    cancelEditProject();
+                    alert("Project successfully updated!");
+                },
+            });
+        } else {
+            projectForm.post(route("breeze.projects.store"), {
+                onSuccess: () => projectForm.reset(),
+            });
+        }
+    };
+
+    // ---------- Category actions --------------------------------------
     const handleCategorySubmit = (e) => {
         e.preventDefault();
         categoryForm.post(route("breeze.categories.store"), {
@@ -63,14 +82,14 @@ export default function Dashboard({ categories = [], projects = [], customers = 
     const handleCategoryDelete = (id, name) => {
         if (
             confirm(
-                `Delete "${name}"? This also deletes every skill in this category.`,
+                `Delete "${name}"? This also deletes every skill in this category.`
             )
         ) {
             categoryForm.delete(route("admin.categories.destroy", id));
         }
     };
 
-    // Customer Actions
+    // ---------- Customer actions --------------------------------------
     const startEditCustomer = (customer) => {
         setEditingCustomerId(customer.id);
         customerForm.setData({
@@ -95,7 +114,7 @@ export default function Dashboard({ categories = [], projects = [], customers = 
                         cancelEditCustomer();
                         alert("Customer successfully updated!");
                     },
-                },
+                }
             );
         } else {
             customerForm.post(route("breeze.customers.store"), {
@@ -104,27 +123,7 @@ export default function Dashboard({ categories = [], projects = [], customers = 
         }
     };
 
-    const cancelEditProject = () => {
-        setEditingProjectId(null);
-        projectForm.reset();
-    };
-
-    const handleProjectSubmit = (e) => {
-        e.preventDefault();
-        if (editingProjectId) {
-            projectForm.put(route("admin.projects.update", editingProjectId), {
-                onSuccess: () => {
-                    cancelEditProject();
-                    alert("Project successfully updated!");
-                },
-            });
-        } else {
-            projectForm.post(route("breeze.projects.store"), {
-                onSuccess: () => projectForm.reset(),
-            });
-        }
-    };
-
+    // ---------- Settings ----------------------------------------------
     const handleUpdateVideo = (e) => {
         e.preventDefault();
         videoForm.put(route("breeze.settings.video.update"), {
@@ -132,77 +131,81 @@ export default function Dashboard({ categories = [], projects = [], customers = 
         });
     };
 
-    // Shared Styling Tokens
+    // ---------- Shared panel styles (theme-aware) ---------------------
+    // Kept as the exact same shape so downstream components work unchanged.
+    // Colors now come from CSS variables.
     const panelStyles = {
         wrapper: {
-            backgroundColor: "#0b1b18",
-            color: "#c3e6dd",
-            borderRadius: "15px",
-            border: "1px solid #b6c9b6",
+            backgroundColor: "var(--bg-raised)",
+            color: "var(--ink)",
+            borderRadius: "var(--radius-md)",
+            border: "1px solid var(--hairline)",
         },
         inputField: {
             width: "100%",
-            padding: "10px",
-            backgroundColor: "#0b1b18",
-            color: "#c3e6dd",
-            border: "1px solid #b6c9b6",
-            borderRadius: "6px",
+            padding: "10px 12px",
+            backgroundColor: "var(--bg)",
+            color: "var(--ink)",
+            border: "1px solid var(--hairline-strong)",
+            borderRadius: "var(--radius-sm)",
             marginTop: "5px",
+            fontFamily: "inherit",
+            fontSize: "0.9rem",
         },
         primaryBtn: {
-            backgroundColor: "#d9ee60",
-            color: "#0b1b18",
-            fontWeight: "900",
+            backgroundColor: "var(--brass)",
+            color: "#FFFFFF",
+            fontWeight: 700,
             padding: "10px 20px",
-            borderRadius: "8px",
+            borderRadius: "var(--radius-sm)",
             cursor: "pointer",
             border: "none",
         },
         secondaryBtn: {
             backgroundColor: "transparent",
-            color: "#b6c9b6",
-            fontWeight: "700",
+            color: "var(--ink-muted)",
+            fontWeight: 600,
             padding: "10px 20px",
-            borderRadius: "8px",
+            borderRadius: "var(--radius-sm)",
             cursor: "pointer",
-            border: "1px solid #b6c9b6",
+            border: "1px solid var(--hairline-strong)",
             marginLeft: "10px",
         },
         editInlineBtn: {
-            backgroundColor: "#b6c9b6",
-            color: "#0b1b18",
-            padding: "4px 10px",
-            borderRadius: "4px",
+            backgroundColor: "var(--bg-soft)",
+            color: "var(--ink)",
+            padding: "5px 12px",
+            borderRadius: "var(--radius-sm)",
             fontSize: "12px",
-            fontWeight: "bold",
+            fontWeight: 600,
             cursor: "pointer",
-            border: "none",
+            border: "1px solid var(--hairline-strong)",
         },
     };
 
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                <h2 className="auth-header-title">
                     Portfolio Engineering Panel
                 </h2>
             }
         >
             <Head title="Control Deck" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="dashboard-page">
+                <div className="dashboard-container">
                     {!isAdmin ? (
                         <AdminNotice userName={auth?.user?.name} />
                     ) : (
-                        <div className="flex flex-col md:flex-row gap-6">
+                        <div className="dashboard-layout">
                             <Sidebar
                                 activeTab={activeTab}
                                 setActiveTab={setActiveTab}
                             />
 
                             <div
-                                className="flex-1 p-8 shadow-xl"
+                                className="dashboard-panel"
                                 style={panelStyles.wrapper}
                             >
                                 {activeTab === "projects" && (
@@ -213,9 +216,7 @@ export default function Dashboard({ categories = [], projects = [], customers = 
                                         editingProjectId={editingProjectId}
                                         startEditProject={startEditProject}
                                         cancelEditProject={cancelEditProject}
-                                        handleProjectSubmit={
-                                            handleProjectSubmit
-                                        }
+                                        handleProjectSubmit={handleProjectSubmit}
                                         panelStyles={panelStyles}
                                     />
                                 )}
@@ -224,12 +225,8 @@ export default function Dashboard({ categories = [], projects = [], customers = 
                                         categories={categories}
                                         isAdmin={isAdmin}
                                         categoryForm={categoryForm}
-                                        handleCategorySubmit={
-                                            handleCategorySubmit
-                                        }
-                                        handleCategoryDelete={
-                                            handleCategoryDelete
-                                        }
+                                        handleCategorySubmit={handleCategorySubmit}
+                                        handleCategoryDelete={handleCategoryDelete}
                                     />
                                 )}
                                 {activeTab === "customers" && (
@@ -240,9 +237,7 @@ export default function Dashboard({ categories = [], projects = [], customers = 
                                         editingCustomerId={editingCustomerId}
                                         startEditCustomer={startEditCustomer}
                                         cancelEditCustomer={cancelEditCustomer}
-                                        handleCustomerSubmit={
-                                            handleCustomerSubmit
-                                        }
+                                        handleCustomerSubmit={handleCustomerSubmit}
                                         panelStyles={panelStyles}
                                     />
                                 )}

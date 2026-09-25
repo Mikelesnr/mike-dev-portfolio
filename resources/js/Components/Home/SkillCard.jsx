@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectChip from "./ProjectChip";
+import ProjectChip from "../Projects/ProjectChip";
 
 export default function SkillCard({ skill }) {
     const projects = skill.projects ?? [];

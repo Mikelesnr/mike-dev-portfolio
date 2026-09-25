@@ -9,22 +9,19 @@ export default function CustomerForm({
     panelStyles,
 }) {
     return (
-        <form
-            onSubmit={handleCustomerSubmit}
-            className="space-y-4 mb-8 bg-black/20 p-6 rounded-xl border border-gray-800"
-        >
+        <form onSubmit={handleCustomerSubmit} className="dash-form">
             <h3
-                className="text-md font-bold text-white mb-2"
-                style={{ color: editingCustomerId ? "#d9ee60" : "white" }}
+                className={`dash-form-title ${editingCustomerId ? "is-editing" : ""
+                    }`}
             >
                 {editingCustomerId
                     ? `Edit Customer (ID: ${editingCustomerId})`
                     : "Add New Customer"}
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label className="text-xs font-bold uppercase">
+            <div className="dash-form-grid-2">
+                <div className="dash-field">
+                    <label className="dash-label">
                         Business or Owner Name
                     </label>
                     <input
@@ -37,8 +34,8 @@ export default function CustomerForm({
                         }
                     />
                 </div>
-                <div>
-                    <label className="text-xs font-bold uppercase">
+                <div className="dash-field">
+                    <label className="dash-label">
                         Logo URL (optional)
                     </label>
                     <input
@@ -53,10 +50,8 @@ export default function CustomerForm({
                 </div>
             </div>
 
-            <div>
-                <label className="text-xs font-bold uppercase">
-                    Linked Project
-                </label>
+            <div className="dash-field">
+                <label className="dash-label">Linked Project</label>
                 <select
                     style={panelStyles.inputField}
                     required
@@ -74,7 +69,7 @@ export default function CustomerForm({
                 </select>
             </div>
 
-            <div className="flex items-center">
+            <div className="dash-form-actions">
                 <button
                     type="submit"
                     style={panelStyles.primaryBtn}
@@ -83,8 +78,8 @@ export default function CustomerForm({
                     {customerForm.processing
                         ? "Saving..."
                         : editingCustomerId
-                          ? "Update Customer"
-                          : "Save Customer"}
+                            ? "Update Customer"
+                            : "Save Customer"}
                 </button>
                 {editingCustomerId && (
                     <button

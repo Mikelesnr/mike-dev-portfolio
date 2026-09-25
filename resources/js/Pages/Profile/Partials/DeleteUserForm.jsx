@@ -1,3 +1,4 @@
+import React from "react";
 import DangerButton from "@/Components/DangerButton";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
@@ -39,38 +40,32 @@ export default function DeleteUserForm({ className = "" }) {
     };
 
     return (
-        <section className={`space-y-6 ${className}`}>
-            <header>
-                <h2 className="text-xl font-bold text-red-500">
+        <section className={`auth-danger-section ${className}`}>
+            <header className="auth-card-header">
+                <h2 className="auth-card-title auth-card-title-danger">
                     Delete Account
                 </h2>
-                <p className="mt-1 text-sm text-gray-400">
-                    Once your account is deleted, all of its resources and data
-                    will be permanently deleted.
+                <p className="auth-card-sub">
+                    Once your account is deleted, all of its resources and
+                    data will be permanently deleted.
                 </p>
             </header>
 
-            <DangerButton
-                onClick={confirmUserDeletion}
-                className="bg-red-900/50"
-            >
+            <DangerButton onClick={confirmUserDeletion}>
                 Delete Account
             </DangerButton>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
-                <form
-                    onSubmit={deleteUser}
-                    className="p-6 bg-[#0b1b18] border border-gray-800"
-                >
-                    <h2 className="text-lg font-medium text-white">
+                <form onSubmit={deleteUser} className="modal-body">
+                    <h2 className="modal-title">
                         Are you sure you want to delete your account?
                     </h2>
-                    <p className="mt-1 text-sm text-gray-400">
+                    <p className="modal-sub">
                         Once your account is deleted, all of its resources and
                         data will be permanently deleted. Please enter your
                         password to confirm.
                     </p>
-                    <div className="mt-6">
+                    <div className="modal-field">
                         <InputLabel
                             htmlFor="password"
                             value="Password"
@@ -85,7 +80,7 @@ export default function DeleteUserForm({ className = "" }) {
                             onChange={(e) =>
                                 setData("password", e.target.value)
                             }
-                            className="mt-1 block w-3/4 bg-black/50 border-gray-700 text-white"
+                            className="mt-1 block w-3/4"
                             placeholder="Password"
                         />
                         <InputError
@@ -93,12 +88,12 @@ export default function DeleteUserForm({ className = "" }) {
                             className="mt-2"
                         />
                     </div>
-                    <div className="mt-6 flex justify-end">
+                    <div className="modal-actions">
                         <SecondaryButton onClick={closeModal}>
                             Cancel
                         </SecondaryButton>
                         <DangerButton
-                            className="ms-3 bg-red-900/50"
+                            className="ms-3"
                             disabled={processing}
                         >
                             Delete Account
