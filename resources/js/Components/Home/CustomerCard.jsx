@@ -19,8 +19,23 @@ export default function CustomerCard({ customer }) {
             )}
             <span className="customer-name">{customer.name}</span>
             {linkedProject && (
-                <a href="/work" className="project-chip">
-                    {linkedProject.name}
+                <a
+                    href="/work"
+                    className="customer-project-link"
+                    title={`View ${linkedProject.name} on the Work page`}
+                >
+                    <span className="customer-project-link-label">
+                        View project
+                    </span>
+                    <span className="customer-project-link-name">
+                        {linkedProject.name}
+                    </span>
+                    <span
+                        className="customer-project-link-arrow"
+                        aria-hidden="true"
+                    >
+                        →
+                    </span>
                 </a>
             )}
         </div>

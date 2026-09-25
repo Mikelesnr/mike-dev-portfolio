@@ -1,0 +1,727 @@
+/* ==========================================================================
+   responsive.css — All media queries, consolidated
+   Order matters: base sizes → laptop → tablet → mobile → tiny.
+   ========================================================================== */
+
+/* ==========================================================================
+   Large screens
+   ========================================================================== */
+@media (min-width: 1700px) {
+    .section {
+        max-width: 1520px;
+    }
+    .container-wide {
+        max-width: 1480px;
+    }
+    .hero {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+}
+
+/* ---------- Root font scale (progressive enhancement) ----------------- */
+@media (min-width: 640px) {
+    html {
+        font-size: 112.5%; /* 18px — laptop, tablet */
+    }
+}
+
+@media (min-width: 1440px) {
+    html {
+        font-size: 118.75%; /* 19px — wide desktop */
+    }
+}
+
+/* ==========================================================================
+   Wide — max 1800px
+   ========================================================================== */
+@media (max-width: 1800px) {
+    .into-container h2 {
+        font-size: 22px;
+    }
+    .myh1 {
+        font-size: 50px;
+    }
+}
+
+/* ==========================================================================
+   Laptop — max 1413px
+   ========================================================================== */
+@media (max-width: 1413px) {
+    .myh1 {
+        font-size: 42px;
+    }
+}
+
+/* ==========================================================================
+   Small laptop — max 1283px
+   ========================================================================== */
+@media (max-width: 1283px) {
+    .into-container,
+    .profile-image-container {
+        height: fit-content;
+    }
+    .myh1 {
+        font-size: 38px;
+    }
+}
+
+/* ==========================================================================
+   Tablet landscape — max 1155px
+   ========================================================================== */
+@media (max-width: 1155px) {
+    .gradient-background {
+        background: var(--grad-hero);
+        padding: 20px;
+        border-radius: var(--radius-md);
+    }
+}
+
+/* ==========================================================================
+   Tablet — max 990px
+   ========================================================================== */
+@media (max-width: 990px) {
+    .myh1 {
+        font-size: 32px;
+    }
+
+    .dashboard-sidebar {
+        position: static;
+    }
+
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .contact-aside {
+        position: static;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ==========================================================================
+   Mobile — max 640px
+   ========================================================================== */
+@media (max-width: 640px) {
+    /* ---------- Typography ---------------------------------------- */
+    .body-h2 {
+        font-size: 28px;
+    }
+    .body-h3 {
+        font-size: 22px;
+    }
+    .myh1 {
+        font-size: 32px;
+    }
+
+    /* ---------- Layout containers ---------------------------------- */
+    .info {
+        width: 95%;
+        margin: 0 auto;
+        padding: 24px;
+    }
+
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .content {
+        width: 95%;
+        margin: 0 auto;
+        padding: 24px 0;
+    }
+
+    .section {
+        width: 95%;
+        margin: 0 auto 20px;
+        padding: 30px 16px;
+    }
+
+    /* ---------- Hero ----------------------------------------------- */
+    .hero {
+        display: block;
+    }
+
+    .into-container,
+    .profile-image-container {
+        padding: 0;
+        margin: 0 auto 20px;
+        width: 100%;
+    }
+
+    .myh1,
+    .into-container h2,
+    .into-container p {
+        padding: 5px 0;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .into-container {
+        text-align: center;
+    }
+
+    .gradient-background {
+        background: none;
+    }
+
+    /* ---------- Nav ------------------------------------------------- */
+    .navbar {
+        padding: 14px 18px;
+        position: relative;
+    }
+
+    .navbar-logo {
+        font-size: 1.2rem;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        list-style: none;
+        padding: 6px 0;
+        margin: 0;
+
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 12px;
+        right: 12px;
+        width: auto;
+
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+
+        background-color: var(--bg-raised);
+        border: 1px solid var(--hairline);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        z-index: 40;
+
+        animation: mobile-menu-in 0.22s var(--ease-out) both;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .nav-item {
+        display: block;
+        width: 100%;
+        position: relative;
+    }
+
+    .nav-link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        width: 100%;
+        padding: 13px 18px;
+        border-radius: 0;
+        font-size: 0.95rem;
+        line-height: 1.2;
+        text-align: left;
+        gap: 8px;
+
+        position: relative;
+        background: transparent;
+        color: var(--ink-muted);
+    }
+
+    .nav-link > span {
+        transform: none !important;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+        background-color: var(--bg-soft);
+        color: var(--ink);
+    }
+
+    .nav-link:hover > span {
+        transform: none;
+    }
+
+    .nav-link.active-link {
+        background-color: var(--moss-soft);
+        border-left: 3px solid var(--brass);
+        color: var(--brass);
+        padding-left: 15px;
+        font-weight: 600;
+    }
+
+    .nav-swoosh {
+        display: none !important;
+    }
+
+    .nav-link:hover:not(.active-link)::after {
+        display: none !important;
+    }
+
+    .nav-item-toggle {
+        margin: 0;
+        justify-content: center;
+        display: flex;
+        border-top: 1px solid var(--hairline);
+        padding: 12px 18px;
+        margin-top: 4px;
+    }
+
+    .nav-item-toggle .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-logout {
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start;
+        padding: 13px 18px;
+        background: transparent;
+        border: none;
+        font: inherit;
+        color: var(--ink-muted);
+        cursor: pointer;
+    }
+
+    .nav-logout:hover {
+        background-color: var(--bg-soft);
+        color: var(--ink);
+    }
+
+    /* ---------- Footer -------------------------------------------- */
+    .footer {
+        width: 100%;
+        padding: 40px 0 20px;
+        text-align: center;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-tagline {
+        max-width: 100%;
+    }
+
+    .footer-social-links {
+        justify-content: center;
+    }
+
+    .footer-col {
+        align-items: center;
+    }
+
+    .footer-link-block,
+    .whatsapp-link {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-back-top {
+        margin: 8px auto 0;
+    }
+
+    .footer-bottom {
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* ---------- Sections ------------------------------------------- */
+    .skill-category-wrap {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .about-card {
+        padding: 22px;
+    }
+
+    .section-underline {
+        width: 48px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .cta-banner {
+        padding: 36px 22px;
+    }
+
+    .cta-banner h3 {
+        font-size: 1.35rem;
+    }
+
+    .customers-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 14px;
+    }
+
+    .customer-logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    /* ---------- Contact -------------------------------------------- */
+    .contact-section {
+        padding: 40px 0;
+        margin: 30px auto 40px;
+    }
+
+    .contact-panel {
+        padding: 22px;
+    }
+
+    .contact-mode-btn {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+        gap: 6px;
+    }
+
+    .contact-mode-btn span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .contact-panel-title {
+        font-size: 1.2rem;
+    }
+
+    .btn-submit {
+        align-self: stretch;
+        text-align: center;
+    }
+
+    .contact-method {
+        padding: 10px 12px;
+    }
+
+    .contact-map-frame {
+        aspect-ratio: 4 / 3;
+        min-height: 260px;
+    }
+
+    .contact-map-overlay {
+        top: 12px;
+        left: 12px;
+        padding: 6px 11px;
+        font-size: 10px;
+    }
+
+    /* ---------- Map (legacy) -------------------------------------- */
+    .map-container {
+        width: 95%;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .map-iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* ---------- Modals -------------------------------------------- */
+    .project-modal-overlay {
+        padding: 10px;
+    }
+
+    .project-modal {
+        width: 100%;
+        height: 96vh;
+    }
+
+    .project-detail-modal {
+        max-width: 100%;
+        max-height: 92vh;
+    }
+
+    .project-detail-body {
+        padding: 22px 20px 24px;
+    }
+
+    .project-detail-meta {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .project-detail-description {
+        font-size: 0.95rem;
+    }
+
+    /* ---------- Chat ---------------------------------------------- */
+    .chat-widget {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .chat-panel {
+        width: calc(100vw - 32px);
+        max-width: 380px;
+        height: min(560px, calc(100vh - 120px));
+    }
+
+    .chat-toggle-btn {
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .chat-toggle-label {
+        display: none;
+    }
+
+    .chat-toggle-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* ---------- Work page ----------------------------------------- */
+    .work-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .work-filters {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .work-filter-chip {
+        flex: 1;
+        text-align: center;
+        padding: 8px 8px;
+        font-size: 0.8rem;
+    }
+
+    .work-count {
+        text-align: center;
+    }
+
+    .pagination-pages {
+        display: none;
+    }
+
+    .pagination {
+        gap: 12px;
+    }
+
+    .pagination-btn {
+        flex: 1;
+        max-width: 140px;
+    }
+
+    .work-dev-card {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+        padding: 22px;
+        gap: 20px;
+    }
+
+    .work-dev-link {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* ---------- Dashboard ----------------------------------------- */
+    .dashboard-page {
+        padding: 20px 0 48px;
+    }
+
+    .dashboard-container {
+        padding: 0 16px;
+    }
+
+    .dashboard-panel {
+        padding: 20px;
+    }
+
+    .auth-header-inner {
+        padding: 12px 16px;
+    }
+
+    .auth-header-user {
+        font-size: 10px;
+    }
+
+    .dash-form-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-inline-form {
+        flex-direction: column;
+    }
+
+    .dash-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    /* ---------- Auth ---------------------------------------------- */
+    .profile-card {
+        padding: 22px;
+    }
+}
+
+/* ==========================================================================
+   Very small — max 520px
+   ========================================================================== */
+@media (max-width: 520px) {
+    .guest-card {
+        padding: 24px 20px;
+        border-radius: var(--radius-sm);
+    }
+}
+
+/* ==========================================================================
+   Mobile menu entry animation
+   ========================================================================== */
+@keyframes mobile-menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Reduced motion — disable all animations
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .project-detail-modal {
+        animation: none !important;
+    }
+
+    .guest-brand,
+    .guest-brand-primary,
+    .text-input,
+    .btn-primary,
+    .btn-secondary,
+    .btn-danger,
+    .auth-link,
+    .modal-backdrop {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    .dashboard-sidebar-btn,
+    .dash-btn-primary,
+    .dash-btn-delete,
+    .dash-skill-chip,
+    .dash-input,
+    .dash-select {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .contact-mode-btn,
+    .btn-submit,
+    .whatsapp-cta,
+    .whatsapp-cta-arrow,
+    .contact-method,
+    .contact-method-icon,
+    .contact-map-frame,
+    .contact-map-iframe,
+    .whatsapp-preview-dot,
+    .contact-map-pin {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .work-filter-chip,
+    .pagination-btn,
+    .pagination-page,
+    .work-dev-card,
+    .work-dev-link,
+    .work-dev-link-arrow {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .chat-panel,
+    .chat-typing span,
+    .chat-toggle-btn,
+    .chat-send-btn,
+    .chat-close-btn {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .chat-typing span {
+        opacity: 0.7;
+    }
+
+    .section-underline,
+    .about-card,
+    .about-video-frame,
+    .about-fact-download,
+    .skill-category,
+    .skill-category-accent,
+    .under-the-hood-arrow,
+    .under-the-hood-panel {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .skill-category-accent {
+        transform: scaleX(1);
+    }
+
+    .whatsapp-link:hover .whatsapp-badge {
+        animation: none;
+    }
+
+    .whatsapp-link,
+    .footer-back-top,
+    .footer-wordmark {
+        transition: none;
+        transform: none;
+    }
+}

@@ -1,0 +1,171 @@
+/* ==========================================================================
+   components/chips.css — Chips, tags, badges
+   ========================================================================== */
+
+/* ---------- Base chip -------------------------------------------------- */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    padding: 4px 10px;
+    text-decoration: none;
+    line-height: 1;
+    transition:
+        background-color 0.15s var(--ease),
+        border-color 0.15s var(--ease),
+        color 0.15s var(--ease);
+}
+
+/* ---------- Project chip (clickable) ----------------------------------- */
+.chip--project {
+    color: var(--signal);
+    background-color: rgba(14, 124, 107, 0.08);
+    border: 1px solid rgba(14, 124, 107, 0.25);
+    cursor: pointer;
+}
+
+.chip--project:hover {
+    background-color: rgba(14, 124, 107, 0.16);
+    border-color: rgba(14, 124, 107, 0.5);
+    color: var(--signal-strong);
+}
+
+[data-theme="dark"] .chip--project {
+    background-color: rgba(45, 212, 191, 0.10);
+    border-color: rgba(45, 212, 191, 0.30);
+}
+
+[data-theme="dark"] .chip--project:hover {
+    background-color: rgba(45, 212, 191, 0.20);
+    border-color: rgba(45, 212, 191, 0.55);
+}
+
+/* ---------- Skill chip (static label) --------------------------------- */
+.chip--skill {
+    color: var(--moss);
+    background-color: var(--moss-soft);
+    border: 1px solid var(--moss-soft);
+    cursor: default;
+}
+
+/* ---------- Status + type badges --------------------------------------- */
+.project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 4px 10px;
+    background-color: var(--bg-raised);
+}
+
+.project-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--brass);
+}
+
+.project-type-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 4px 10px;
+}
+
+.project-type-client {
+    color: var(--signal);
+    border: 1px solid rgba(14, 124, 107, 0.35);
+    background-color: rgba(14, 124, 107, 0.06);
+}
+
+.project-type-hobby {
+    color: var(--moss);
+    border: 1px solid var(--moss-soft);
+    background-color: var(--moss-soft);
+}
+
+/* ---------- Dashboard badges ------------------------------------------ */
+.dash-badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background-color: var(--moss-soft);
+    color: var(--moss);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+}
+
+.dash-cat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 8px 5px 12px;
+    border-radius: 999px;
+    background-color: var(--bg);
+    border: 1px solid var(--hairline-strong);
+    color: var(--ink);
+    font-size: 0.85rem;
+}
+
+.dash-cat-chip-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-right: 2px;
+}
+
+.dash-skill-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--hairline-strong);
+    background-color: var(--bg);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease),
+        border-color 0.2s var(--ease),
+        color 0.2s var(--ease);
+}
+
+.dash-skill-chip:hover {
+    border-color: var(--brass);
+    color: var(--ink);
+}
+
+.dash-skill-chip.is-checked {
+    background-color: var(--moss-soft);
+    border-color: var(--moss);
+    color: var(--moss);
+}
+
+.dash-skill-chip-input {
+    display: none;
+}
+
+.dash-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}

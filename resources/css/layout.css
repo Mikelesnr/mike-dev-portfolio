@@ -1,0 +1,471 @@
+/* ==========================================================================
+   layout.css — Navbar, footer, top-level structural elements
+   ========================================================================== */
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    background-color: transparent;
+    color: var(--ink-muted);
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.navbar-brand {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink) !important;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    position: relative;
+    transition: color 0.2s var(--ease);
+}
+
+.navbar-brand:hover {
+    color: var(--brass) !important;
+}
+
+.navbar-brand::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--brass);
+    margin-left: 6px;
+    vertical-align: super;
+    transition: transform 0.3s var(--ease);
+}
+
+.navbar-brand:hover::after {
+    transform: scale(1.4);
+}
+
+.navbar-links {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    transition: max-height 0.3s var(--ease);
+}
+
+.navbar-links li {
+    margin: 0 6px;
+}
+
+.navbar-links a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: 0.95em;
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.navbar-toggle .bar {
+    height: 2px;
+    width: 22px;
+    background-color: var(--ink);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--nav-hover-link-color);
+    background-color: var(--nav-hover-background-color);
+}
+
+.active-link {
+    color: var(--brass) !important;
+    font-weight: 600;
+}
+
+/* ---------- Theme toggle button ---------------------------------------- */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline);
+    background-color: transparent;
+    color: var(--ink-muted);
+    font-size: 16px;
+    cursor: pointer;
+    transition:
+        color 0.2s var(--ease),
+        border-color 0.2s var(--ease),
+        background-color 0.2s var(--ease),
+        transform 0.2s var(--ease);
+}
+
+.theme-toggle:hover {
+    color: var(--brass);
+    border-color: var(--brass);
+    background-color: var(--moss-soft);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+    background: linear-gradient(to bottom, var(--bg-soft), var(--bg));
+    border-top: 1px solid var(--hairline);
+    color: var(--ink-muted);
+    padding: 56px 0 24px;
+    text-align: left;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-wordmark {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.2s var(--ease);
+}
+
+.footer-wordmark:hover {
+    color: var(--brass);
+}
+
+.footer-tagline {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    max-width: 40ch;
+    margin: 0;
+}
+
+.footer-social-links {
+    margin-top: 4px;
+    justify-content: flex-start;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-col-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 6px;
+}
+
+.footer-link {
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s var(--ease);
+}
+
+.footer-link:hover {
+    color: var(--brass);
+}
+
+.footer-link-block {
+    display: inline-block;
+    padding: 2px 0;
+    width: fit-content;
+}
+
+/* ---------- WhatsApp link --------------------------------------------- */
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    margin: 4px 0;
+    border-radius: 999px;
+    border: 1px solid var(--moss-soft);
+    background-color: var(--moss-soft);
+    color: var(--moss);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    width: fit-content;
+    transition:
+        background-color 0.2s var(--ease),
+        border-color 0.2s var(--ease),
+        transform 0.2s var(--ease);
+}
+
+.whatsapp-link:hover {
+    border-color: var(--moss);
+    transform: translateY(-1px);
+}
+
+.whatsapp-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--moss);
+    color: var(--bg);
+    flex-shrink: 0;
+}
+
+.whatsapp-link:hover .whatsapp-badge {
+    animation: whatsapp-pulse 1.2s var(--ease) infinite;
+}
+
+@keyframes whatsapp-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+/* ---------- Location column ------------------------------------------- */
+.footer-location {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+}
+
+.footer-note {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    margin: 4px 0 8px;
+    max-width: 32ch;
+}
+
+.footer-back-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    margin-top: 4px;
+    transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.footer-back-top:hover {
+    color: var(--brass);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-copy {
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin: 0;
+}
+
+.footer-copy-mono {
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Social links (used in nav + footer + hero + about)
+   ========================================================================== */
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 22px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline);
+    color: var(--ink-muted);
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.social-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.social-link:hover {
+    color: var(--brass);
+    border-color: var(--brass);
+    transform: translateY(-2px);
+}
+
+.hero-social-links {
+    justify-content: flex-start;
+}
+
+.footer-social-links {
+    margin-bottom: 18px;
+}
+
+/* ---------- Logout button (inside nav links) --------------------------- */
+.nav-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--ink-muted);
+    /* matches .nav-link padding so it lines up with Home/Work/etc */
+    position: relative;
+    transition:
+        color 0.2s var(--ease),
+        background-color 0.2s var(--ease);
+}
+
+.nav-logout > span {
+    transition: transform 0.2s var(--ease);
+}
+
+.nav-logout:hover {
+    color: var(--danger);
+    background-color: transparent;
+}
+
+.nav-logout:hover > span {
+    transform: translateY(-1px);
+}
+
+/* ---------- Icon ------------------------------------------------------- */
+.nav-logout-icon {
+    display: inline-block;
+    transition: transform 0.25s var(--ease);
+}
+
+.nav-logout:hover .nav-logout-icon {
+    transform: translateX(3px);
+}
+
+/* ---------- Hover underline sweep (matches inactive nav hover) -------- */
+.nav-logout::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 4px;
+    height: 1px;
+    background-color: var(--danger);
+    border-radius: 1px;
+    transform-origin: left center;
+    transform: scaleX(0);
+    opacity: 0;
+    transition:
+        transform 0.35s var(--ease),
+        opacity 0.2s var(--ease);
+    pointer-events: none;
+}
+
+.nav-logout:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+}
+
+/* ---------- Mobile: full width, no underline, left accent ------------- */
+@media (max-width: 768px) {
+    .nav-logout {
+        width: 100%;
+        justify-content: space-between;
+        padding: 13px 18px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        text-align: left;
+    }
+
+    .nav-logout:hover {
+        background-color: rgba(220, 38, 38, 0.06);
+        color: var(--danger);
+    }
+
+    .nav-logout::after {
+        display: none;
+    }
+
+    .nav-logout-icon {
+        opacity: 0.7;
+    }
+
+    .nav-logout:hover .nav-logout-icon {
+        transform: none;
+        opacity: 1;
+    }
+}
