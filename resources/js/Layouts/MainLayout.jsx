@@ -5,13 +5,11 @@ import ChatWidget from "../Components/ChatWidget";
 
 export default function MainLayout({ children }) {
     return (
-        <>
+        <div className="min-h-screen flex flex-col">
             <NavBar />
-            <main>{children}</main>
+            <main className="flex-grow">{children}</main>
             <Footer />
-
-            {/* 🌟 Integrate the ChatWidget globally */}
             <ChatWidget />
-        </>
+        </div>
     );
 }

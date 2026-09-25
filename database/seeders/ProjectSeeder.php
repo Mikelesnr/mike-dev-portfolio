@@ -28,6 +28,7 @@ class ProjectSeeder extends Seeder
                 'techstack' => 'Next.js, Prisma, MySQL',
                 'deployment' => 'Live production site (migrating to Laravel soon)',
                 'is_featured' => true,
+                'is_hobby' => false,
                 'skill_names' => ['JavaScript', 'TypeScript', 'Next.js', 'Prisma', 'MySQL & PostgreSQL', 'Git & GitHub Workflows'],
                 'customer_name' => 'Summit Guest House',
             ],
@@ -38,6 +39,7 @@ class ProjectSeeder extends Seeder
                 'techstack' => 'Laravel, Tailwind CSS',
                 'deployment' => 'Live production site',
                 'is_featured' => true,
+                'is_hobby' => false,
                 'skill_names' => ['PHP', 'Laravel', 'Tailwind CSS', 'HTML & CSS', 'Git & GitHub Workflows'],
                 'customer_name' => 'Aligned Surveyors',
             ],
@@ -48,6 +50,7 @@ class ProjectSeeder extends Seeder
                 'techstack' => 'Laravel, Tailwind CSS',
                 'deployment' => 'Live production site',
                 'is_featured' => true,
+                'is_hobby' => false,
                 'skill_names' => ['PHP', 'Laravel', 'Tailwind CSS', 'HTML & CSS', 'Git & GitHub Workflows'],
                 'customer_name' => 'ZamSam',
             ],
@@ -58,12 +61,25 @@ class ProjectSeeder extends Seeder
                 'techstack' => 'Laravel, React, Inertia.js, Tailwind CSS, Dexie.js (IndexedDB)',
                 'deployment' => 'In active development · Render',
                 'is_featured' => true,
+                'is_hobby' => false, // own product, but built to real production standards
                 'skill_names' => [
                     'PHP', 'Laravel', 'React', 'Inertia.js', 'Tailwind CSS', 'JavaScript',
                     'Dexie.js (IndexedDB)', 'Client-side UUID Sync', 'Multi-Tenant Architecture',
                     'MySQL & PostgreSQL', 'Render Deployments', 'Git & GitHub Workflows',
                 ],
                 'customer_name' => null, // own product, not client work
+            ],
+            [
+                'name' => 'Neuro Resilience Gym',
+                'url' => 'https://neuroresiliencegym.netlify.app',
+                // Placeholder copy — update with the real description/stack.
+                'description' => 'A personal wellness app exploring mental resilience training exercises. Built as a side project, not a commissioned client build — free to explore and experiment with.',
+                'techstack' => 'React, Netlify',
+                'deployment' => 'Live on Netlify · personal project',
+                'is_featured' => false,
+                'is_hobby' => true,
+                'skill_names' => ['React', 'JavaScript', 'HTML & CSS'],
+                'customer_name' => null, // hobby project, no client
             ],
         ];
 

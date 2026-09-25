@@ -18,13 +18,16 @@ class ProjectChatController extends Controller
         ]);
 
         try {
-            // 1. Map categories and skills (including mastery percentages)
+            // 1. Map categories and skills, evidenced by the real projects they were used on
             $skillsAndCategories = Category::has('skills')
-                ->with('skills')
+                ->with('skills.projects')
                 ->get()
                 ->map(function ($category) {
                     $skills = $category->skills->map(function ($skill) {
-                        return "{$skill->name} ({$skill->percentage}%)";
+                        $usedOn = $skill->projects->pluck('name')->join(', ');
+                        return $usedOn
+                            ? "{$skill->name} (used on: {$usedOn})"
+                            : $skill->name;
                     })->join(', ');
 
                     return "- {$category->name}: {$skills}";

@@ -32,12 +32,13 @@ class ProjectController extends Controller
             'techstack' => 'required|string',
             'deployment' => 'required|string',
             'is_featured' => 'sometimes|boolean',
+            'is_hobby' => 'sometimes|boolean',
             'skill_ids' => 'array',
             'skill_ids.*' => 'exists:skills,id',
         ]);
 
         $project = Project::create($request->only([
-            'url', 'name', 'description', 'techstack', 'deployment', 'is_featured',
+            'url', 'name', 'description', 'techstack', 'deployment', 'is_featured', 'is_hobby',
         ]));
 
         $project->skills()->sync($request->input('skill_ids', []));
@@ -82,13 +83,14 @@ class ProjectController extends Controller
             'techstack' => 'required|string',
             'deployment' => 'required|string',
             'is_featured' => 'sometimes|boolean',
+            'is_hobby' => 'sometimes|boolean',
             'skill_ids' => 'array',
             'skill_ids.*' => 'exists:skills,id',
         ]);
 
         $project = Project::findOrFail($id);
         $project->update($request->only([
-            'url', 'name', 'description', 'techstack', 'deployment', 'is_featured',
+            'url', 'name', 'description', 'techstack', 'deployment', 'is_featured', 'is_hobby',
         ]));
         $project->skills()->sync($request->input('skill_ids', []));
 

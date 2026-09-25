@@ -14,11 +14,14 @@ export default function CustomersTab({
 }) {
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-2">Customers</h2>
-            <p className="text-sm text-gray-400 mb-6">
-                Businesses and owners you've built for, each linked to an
-                existing project. Shown on the homepage after Why Choose Me.
-            </p>
+            <header className="dash-tab-header">
+                <h2 className="dash-tab-title">Customers</h2>
+                <p className="dash-tab-sub">
+                    Businesses and owners you&apos;ve built for, each linked
+                    to an existing project. Shown on the homepage after Why
+                    Choose Me.
+                </p>
+            </header>
 
             <CustomerForm
                 customerForm={customerForm}

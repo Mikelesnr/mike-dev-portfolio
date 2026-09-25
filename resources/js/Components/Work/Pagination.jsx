@@ -1,25 +1,78 @@
 import React from "react";
 
 export default function Pagination({ currentPage, lastPage, onPageChange }) {
+    // Build a small window of page numbers around the current page.
+    // On mobile we hide these and rely on Prev/Next only.
+    const windowSize = 2;
+    const pages = [];
+    for (let i = 1; i <= lastPage; i++) {
+        if (
+            i === 1 ||
+            i === lastPage ||
+            (i >= currentPage - windowSize && i <= currentPage + windowSize)
+        ) {
+            pages.push(i);
+        } else if (pages[pages.length - 1] !== "…") {
+            pages.push("…");
+        }
+    }
+
+    const goTo = (page) => {
+        if (page < 1 || page > lastPage || page === currentPage) return;
+        onPageChange(page);
+    };
+
     return (
-        <div className="pagination buttons">
+        <nav className="pagination" aria-label="Pagination">
             <button
-                onClick={() => onPageChange(currentPage - 1)}
+                type="button"
+                onClick={() => goTo(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="btn btn-projects"
+                className="pagination-btn pagination-prev"
+                aria-label="Previous page"
             >
-                Prev
+                <span aria-hidden="true">←</span>
+                <span className="pagination-btn-label">Prev</span>
             </button>
-            <span style={{ margin: "0 12px", fontFamily: "var(--font-mono)", fontSize: "13px" }}>
-                Page {currentPage} of {lastPage}
-            </span>
+
+            <div className="pagination-pages">
+                {pages.map((p, idx) =>
+                    p === "…" ? (
+                        <span
+                            key={`gap-${idx}`}
+                            className="pagination-gap"
+                            aria-hidden="true"
+                        >
+                            …
+                        </span>
+                    ) : (
+                        <button
+                            key={p}
+                            type="button"
+                            onClick={() => goTo(p)}
+                            className={`pagination-page ${p === currentPage ? "is-active" : ""
+                                }`}
+                            aria-label={`Go to page ${p}`}
+                            aria-current={
+                                p === currentPage ? "page" : undefined
+                            }
+                        >
+                            {p}
+                        </button>
+                    )
+                )}
+            </div>
+
             <button
-                onClick={() => onPageChange(currentPage + 1)}
+                type="button"
+                onClick={() => goTo(currentPage + 1)}
                 disabled={currentPage === lastPage}
-                className="btn btn-projects"
+                className="pagination-btn pagination-next"
+                aria-label="Next page"
             >
-                Next
+                <span className="pagination-btn-label">Next</span>
+                <span aria-hidden="true">→</span>
             </button>
-        </div>
+        </nav>
     );
 }
