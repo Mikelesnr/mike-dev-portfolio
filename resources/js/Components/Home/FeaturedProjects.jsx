@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Reveal } from "../../Hooks/useReveal";
+import { motion } from "motion/react";
 import ProjectCard from "../Projects/ProjectCard";
 import ProjectModal from "../Projects/ProjectModal";
+import ProjectDetailModal from "../Projects/ProjectDetailModal";
 
 export default function FeaturedProjects({ projects = [] }) {
     const [previewProject, setPreviewProject] = useState(null);
+    const [detailProject, setDetailProject] = useState(null);
 
     if (projects.length === 0) return null;
 
@@ -22,17 +24,24 @@ export default function FeaturedProjects({ projects = [] }) {
 
                 <div className="projects-grid featured-grid">
                     {projects.map((project, i) => (
-                        <Reveal
+                        <motion.div
                             key={project.id}
-                            delay={0.05 + i * 0.08}
-                            y={32}
-                            className="project-card-wrap"
+                            className="project-card-cell"
+                            initial={{ opacity: 0, y: 32 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{
+                                duration: 0.7,
+                                delay: 0.05 + i * 0.08,
+                                ease: [0.16, 1, 0.3, 1],
+                            }}
                         >
                             <ProjectCard
                                 project={project}
                                 onPreview={setPreviewProject}
+                                onReadMore={setDetailProject}
                             />
-                        </Reveal>
+                        </motion.div>
                     ))}
                 </div>
 
@@ -50,6 +59,13 @@ export default function FeaturedProjects({ projects = [] }) {
                 <ProjectModal
                     project={previewProject}
                     onClose={() => setPreviewProject(null)}
+                />
+            )}
+
+            {detailProject && (
+                <ProjectDetailModal
+                    project={detailProject}
+                    onClose={() => setDetailProject(null)}
                 />
             )}
         </section>
