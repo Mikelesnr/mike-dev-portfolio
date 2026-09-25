@@ -1,49 +1,40 @@
 import React from "react";
 
-export default function Sidebar({ activeTab, setActiveTab }) {
-    const sidebarLink = (isActive) => ({
-        display: "block",
-        width: "100%",
-        textAlign: "left",
-        padding: "12px 20px",
-        borderRadius: "8px",
-        marginBottom: "8px",
-        fontWeight: "bold",
-        fontSize: "14px",
-        transition: "all 0.3s ease",
-        backgroundColor: isActive ? "#d9ee60" : "transparent", // var(--btn-primary)
-        color: isActive ? "#0b1b18" : "#b6c9b6",
-    });
+const TABS = [
+    { id: "projects", label: "Projects Portfolio", icon: "📁" },
+    { id: "skills", label: "Skill Metrics", icon: "🛠️" },
+    { id: "customers", label: "Customers", icon: "🤝" },
+    { id: "settings", label: "Media & Video", icon: "📺" },
+];
 
+export default function Sidebar({ activeTab, setActiveTab }) {
     return (
-        <div className="w-full md:w-1/4 p-4 bg-black/30 rounded-xl border border-emerald-950/20 h-fit">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 mb-4">
-                Concerns
-            </h3>
-            <button
-                onClick={() => setActiveTab("projects")}
-                style={sidebarLink(activeTab === "projects")}
-            >
-                📁 Projects Portfolio
-            </button>
-            <button
-                onClick={() => setActiveTab("skills")}
-                style={sidebarLink(activeTab === "skills")}
-            >
-                🛠️ Skill Metrics
-            </button>
-            <button
-                onClick={() => setActiveTab("customers")}
-                style={sidebarLink(activeTab === "customers")}
-            >
-                🤝 Customers
-            </button>
-            <button
-                onClick={() => setActiveTab("settings")}
-                style={sidebarLink(activeTab === "settings")}
-            >
-                📺 Media & Video Settings
-            </button>
-        </div>
+        <nav className="dashboard-sidebar">
+            <h3 className="dashboard-sidebar-heading">Concerns</h3>
+            <ul className="dashboard-sidebar-list">
+                {TABS.map((tab) => {
+                    const isActive = activeTab === tab.id;
+                    return (
+                        <li key={tab.id}>
+                            <button
+                                type="button"
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`dashboard-sidebar-btn ${isActive ? "is-active" : ""
+                                    }`}
+                                aria-current={isActive ? "page" : undefined}
+                            >
+                                <span
+                                    className="dashboard-sidebar-icon"
+                                    aria-hidden="true"
+                                >
+                                    {tab.icon}
+                                </span>
+                                <span>{tab.label}</span>
+                            </button>
+                        </li>
+                    );
+                })}
+            </ul>
+        </nav>
     );
 }

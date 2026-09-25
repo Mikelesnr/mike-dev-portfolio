@@ -15,20 +15,16 @@ export default function SkillsManager({ categories }) {
     };
 
     return (
-        <div className="space-y-8">
-            {/* ADD SKILL FORM */}
-            <form
-                onSubmit={submit}
-                className="bg-black/40 p-5 rounded-xl border border-gray-800"
-            >
-                <h4 className="text-white font-bold mb-4">Add New Skill</h4>
-                <p className="text-xs text-gray-500 mb-4">
+        <div className="dash-skills-manager">
+            <form onSubmit={submit} className="dash-form">
+                <h4 className="dash-form-title">Add New Skill</h4>
+                <p className="dash-form-sub">
                     Tag which projects prove this skill from the Projects tab
                     after adding it here.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="dash-form-grid-2">
                     <select
-                        className="bg-black border border-gray-700 rounded p-2 text-white"
+                        className="dash-select"
                         onChange={(e) => setData("category_id", e.target.value)}
                         value={data.category_id}
                         required
@@ -43,7 +39,7 @@ export default function SkillsManager({ categories }) {
                     <input
                         type="text"
                         placeholder="Skill Name"
-                        className="bg-black border border-gray-700 rounded p-2 text-white"
+                        className="dash-input"
                         onChange={(e) => setData("name", e.target.value)}
                         value={data.name}
                         required
@@ -52,43 +48,39 @@ export default function SkillsManager({ categories }) {
                 <button
                     type="submit"
                     disabled={processing}
-                    className="mt-4 bg-[#d9ee60] text-black font-black py-2 px-6 rounded"
+                    className="dash-btn-primary"
                 >
                     {processing ? "Adding..." : "Add Skill"}
                 </button>
             </form>
 
-            {/* DELETE LIST */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="dash-form-grid-2">
                 {categories.map((cat) => (
-                    <div
-                        key={cat.id}
-                        className="bg-black/20 p-5 rounded-xl border border-gray-800"
-                    >
-                        <h3 className="text-white font-bold mb-3">
-                            {cat.name}
-                        </h3>
-                        {cat.skills.map((skill) => (
-                            <div
-                                key={skill.id}
-                                className="flex justify-between items-center text-sm py-1 border-b border-gray-900"
-                            >
-                                <span>{skill.name}</span>
-                                <button
-                                    onClick={() =>
-                                        destroy(
-                                            route(
-                                                "admin.skills.destroy",
-                                                skill.id,
-                                            ),
-                                        )
-                                    }
-                                    className="text-red-400 hover:text-red-600 font-bold px-2"
-                                >
-                                    ×
-                                </button>
-                            </div>
-                        ))}
+                    <div key={cat.id} className="dash-card">
+                        <h3 className="dash-card-title">{cat.name}</h3>
+                        <div className="dash-card-body">
+                            {cat.skills.map((skill) => (
+                                <div key={skill.id} className="dash-skill-row">
+                                    <span className="dash-skill-name">
+                                        {skill.name}
+                                    </span>
+                                    <button
+                                        onClick={() =>
+                                            destroy(
+                                                route(
+                                                    "admin.skills.destroy",
+                                                    skill.id
+                                                )
+                                            )
+                                        }
+                                        className="dash-btn-x"
+                                        aria-label={`Delete ${skill.name}`}
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>

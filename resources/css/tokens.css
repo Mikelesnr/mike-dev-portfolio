@@ -1,58 +1,131 @@
 /* ==========================================================================
-   Design tokens
-   --------------------------------------------------------------------------
-   Direction: a developer's ledger. Michael builds offline-first POS
-   software for small shops and bars across Zimbabwe/SADC — systems that
-   have to keep an honest, resilient record even when the network drops.
-   The palette borrows from that world: ink, paper, and a brass "stamp"
-   accent, rather than a generic dark-mode neon look.
+   tokens.css — Light/Dark dual theme
+   Light palette aligned with mompop.online (warm off-white editorial).
+   Green (--moss) is a HIGHLIGHT-only token.
    ========================================================================== */
 
-:root {
-    /* -- Color: ink & paper -------------------------------------------- */
-    --ink: #10181a; /* page background */
-    --ink-raised: #182422; /* panels / cards */
-    --ink-raised-2: #1f2e2b; /* hover / nested panels */
-    --hairline: #2a3936; /* dividers, borders */
+:root,
+[data-theme="light"] {
+    /* ---- Surfaces — warm off-white -------------------------------- */
+    --bg:            #FAF7F0;
+    --bg-soft:       #F3EEE2;
+    --bg-raised:     #FFFFFF;
+    --bg-sunken:     #EFE9DB;
 
-    --paper: #ede7d8; /* primary text — warm off-white, ledger paper */
-    --paper-muted: #93a29b; /* secondary text */
-    --paper-faint: #5f6f68; /* tertiary / disabled text */
+    /* ---- Text ----------------------------------------------------- */
+    --ink:           #1A1F1C;
+    --ink-muted:     #4E5751;
+    --ink-faint:     #8A908A;
 
-    /* -- Color: accents --------------------------------------------------
-       Brass = the "stamp": primary CTA, live-status marks, highlights.
-       Signal = a cool terminal cyan used sparingly for links/interactive
-       affordances so the brass stays special. */
-    --brass: #c89b3c;
-    --brass-strong: #e0b656;
-    --signal: #4fb6a8;
-    --signal-strong: #6fd0c1;
-    --moss: #7a9b6e;
-    --moss-strong: #96bd88;
+    /* ---- Accents -------------------------------------------------- */
+    --brass:          #C87F0A;
+    --brass-strong:   #E89A1F;
+    --signal:         #0E7C6B;
+    --signal-strong:  #14968A;
+    --pop:            #DC2626;
+    --pop-soft:       #EF4444;
+    --accent:         #7C3AED;
+    --accent-strong:  #8B5CF6;
+    --danger:         #DC2626;
 
-    --danger: #d16a5c;
+    /* ---- Highlight green — use SPARINGLY -------------------------- */
+    --moss:           #5E7A54;
+    --moss-strong:    #7A9B6E;
+    --moss-soft:      rgba(94, 122, 84, 0.10);
 
-    /* -- Type --------------------------------------------------------- */
-    --font-display: "Fraunces", "Merriweather", serif;
-    --font-body: "Inter", "Roboto", sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    /* ---- Lines & shadow ------------------------------------------- */
+    --hairline:        rgba(26, 31, 28, 0.10);
+    --hairline-strong: rgba(26, 31, 28, 0.18);
+    --shadow-sm:       0 1px 3px rgba(26, 31, 28, 0.06);
+    --shadow-md:       0 8px 24px rgba(26, 31, 28, 0.10);
+    --shadow-lg:       0 20px 50px rgba(26, 31, 28, 0.14);
 
-    /* -- Shape & motion -------------------------------------------------- */
-    --radius-sm: 6px;
-    --radius-md: 14px;
-    --radius-lg: 24px;
-    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    /* ---- Legacy aliases (so existing CSS keeps working) ----------- */
+    /* These map old token names → new ones. Delete later if you want. */
+    --paper:          var(--ink);
+    --paper-muted:    var(--ink-muted);
+    --paper-faint:    var(--ink-faint);
+    --ink-raised:     var(--bg-raised);
 
-    /* Back-compat aliases so any untouched rule elsewhere keeps working */
+    /* ---- Nav (legacy vars your app.css already uses) -------------- */
+    --nav-link-color:              var(--ink-muted);
+    --nav-hover-link-color:        var(--ink);
+    --nav-hover-background-color:  var(--moss-soft);
+
+    /* ---- Signature gradients -------------------------------------- */
+    --grad-hero:
+        radial-gradient(circle at 20% 30%, rgba(200, 127, 10, 0.08), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.06), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(94, 122, 84, 0.06), transparent 45%);
+    --grad-cta: linear-gradient(135deg, #C87F0A 0%, #7C3AED 100%);
+
+    /* ---- Body background image (theme-aware) ---------------------- */
     --background-image-url: none;
-    --text-color: var(--paper);
-    --div-color: var(--ink);
-    --btn-primary: var(--brass);
-    --btn-secondary: var(--ink-raised);
-    --heading-font: var(--font-display);
-    --paragraph-font: var(--font-body);
-    --nav-background-color: var(--ink);
-    --nav-link-color: var(--paper-muted);
-    --nav-hover-link-color: var(--paper);
-    --nav-hover-background-color: var(--ink-raised);
+}
+
+[data-theme="dark"] {
+    --bg:            #0A0E14;
+    --bg-soft:       #0F141B;
+    --bg-raised:     #161C24;
+    --bg-sunken:     #05080C;
+
+    --ink:           #F8FAFC;
+    --ink-muted:     #A0A9B5;
+    --ink-faint:     #5E6774;
+
+    --brass:          #FBBF24;
+    --brass-strong:   #FCD34D;
+    --signal:         #2DD4BF;
+    --signal-strong:  #5EEAD4;
+    --pop:            #F87171;
+    --pop-soft:       #FCA5A5;
+    --accent:         #A78BFA;
+    --accent-strong:  #C4B5FD;
+    --danger:         #F87171;
+
+    --moss:           #7DA870;
+    --moss-strong:    #9BB88E;
+    --moss-soft:      rgba(125, 168, 112, 0.12);
+
+    --hairline:        rgba(248, 250, 252, 0.10);
+    --hairline-strong: rgba(248, 250, 252, 0.20);
+    --shadow-sm:       0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md:       0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-lg:       0 20px 50px rgba(0, 0, 0, 0.6);
+
+    --paper:          var(--ink);
+    --paper-muted:    var(--ink-muted);
+    --paper-faint:    var(--ink-faint);
+    --ink-raised:     var(--bg-raised);
+
+    --nav-link-color:              var(--ink-muted);
+    --nav-hover-link-color:        var(--ink);
+    --nav-hover-background-color:  var(--moss-soft);
+
+    --grad-hero:
+        radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.15), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.12), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(125, 168, 112, 0.10), transparent 45%);
+    --grad-cta: linear-gradient(135deg, #FBBF24 0%, #A78BFA 100%);
+
+    --background-image-url: none;
+}
+
+/* ==========================================================================
+   Shared tokens (theme-independent)
+   ========================================================================== */
+:root {
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body:    "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    --ease:          cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+    --duration:      0.4s;
+    --duration-fast: 0.2s;
+    --duration-slow: 0.8s;
 }

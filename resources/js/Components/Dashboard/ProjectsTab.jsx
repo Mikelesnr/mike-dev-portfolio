@@ -14,11 +14,13 @@ export default function ProjectsTab({
 }) {
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-2">Projects</h2>
-            <p className="text-sm text-gray-400 mb-6">
-                Manage the projects shown on /work, and tag each with the
-                skills it demonstrates.
-            </p>
+            <header className="dash-tab-header">
+                <h2 className="dash-tab-title">Projects</h2>
+                <p className="dash-tab-sub">
+                    Manage the projects shown on /work, and tag each with the
+                    skills it demonstrates.
+                </p>
+            </header>
 
             <ProjectForm
                 projectForm={projectForm}

@@ -7,27 +7,26 @@ export default function SettingsTab({
 }) {
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-2">
-                Media Architecture Toggles
-            </h2>
-            <p className="text-sm text-gray-400 mb-6">
-                Change dynamic runtime keys loaded within your app
-                infrastructure layouts.
-            </p>
+            <header className="dash-tab-header">
+                <h2 className="dash-tab-title">
+                    Media Architecture Toggles
+                </h2>
+                <p className="dash-tab-sub">
+                    Change dynamic runtime keys loaded within your app
+                    infrastructure layouts.
+                </p>
+            </header>
 
-            <form
-                onSubmit={handleUpdateVideo}
-                className="bg-black/20 p-6 rounded-xl border border-gray-800 space-y-4"
-            >
-                <div>
-                    <h3 className="text-md font-bold text-white">
+            <form onSubmit={handleUpdateVideo} className="dash-form">
+                <div className="dash-field">
+                    <h3 className="dash-form-title">
                         Change Introduction Video Stream
                     </h3>
-                    <p className="text-xs text-gray-400 mt-1 mb-4">
+                    <p className="dash-form-sub">
                         Paste any standard YouTube link below to immediately
                         swap out the video element assets on your homepage.
                     </p>
-                    <label className="text-xs font-bold uppercase tracking-wider">
+                    <label className="dash-label">
                         Active Stream Engine Target URL:
                     </label>
                     <input

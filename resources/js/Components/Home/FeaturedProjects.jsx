@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Reveal } from "../../Hooks/useReveal";
 import ProjectCard from "../Projects/ProjectCard";
 import ProjectModal from "../Projects/ProjectModal";
 
@@ -10,24 +11,39 @@ export default function FeaturedProjects({ projects = [] }) {
     return (
         <section id="featured-projects" className="section projects-section">
             <div className="container container-wide">
-                <h2 className="body-h2">Featured Projects</h2>
+                <header className="section-header">
+                    <h2 className="body-h2">Featured Projects</h2>
+                    <span className="section-underline" aria-hidden="true" />
+                </header>
+
                 <p className="ledger-stub">
                     <span>shipped &amp; in progress</span>
                 </p>
 
-                <div className="content projects-grid" style={{ maxWidth: "100%" }}>
-                    {projects.map((project) => (
-                        <ProjectCard
+                <div className="projects-grid featured-grid">
+                    {projects.map((project, i) => (
+                        <Reveal
                             key={project.id}
-                            project={project}
-                            onPreview={setPreviewProject}
-                        />
+                            delay={0.05 + i * 0.08}
+                            y={32}
+                            className="project-card-wrap"
+                        >
+                            <ProjectCard
+                                project={project}
+                                onPreview={setPreviewProject}
+                            />
+                        </Reveal>
                     ))}
                 </div>
 
-                <a href="/work" className="btn btn-projects">
-                    See All Projects
-                </a>
+                <div className="projects-footer">
+                    <a href="/work" className="btn btn-projects btn-with-arrow">
+                        <span>See All Projects</span>
+                        <span className="btn-arrow" aria-hidden="true">
+                            →
+                        </span>
+                    </a>
+                </div>
             </div>
 
             {previewProject && (

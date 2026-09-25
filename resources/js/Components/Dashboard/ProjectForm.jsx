@@ -19,22 +19,20 @@ export default function ProjectForm({
     return (
         <form
             onSubmit={handleProjectSubmit}
-            className="space-y-4 mb-8 bg-black/20 p-6 rounded-xl border border-gray-800"
+            className="dash-form"
         >
             <h3
-                className="text-md font-bold text-white mb-2"
-                style={{ color: editingProjectId ? "#d9ee60" : "white" }}
+                className={`dash-form-title ${editingProjectId ? "is-editing" : ""
+                    }`}
             >
                 {editingProjectId
                     ? `Edit Project (ID: ${editingProjectId})`
                     : "Add New Project"}
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label className="text-xs font-bold uppercase">
-                        Project Name
-                    </label>
+            <div className="dash-form-grid-2">
+                <div className="dash-field">
+                    <label className="dash-label">Project Name</label>
                     <input
                         type="text"
                         style={panelStyles.inputField}
@@ -45,8 +43,8 @@ export default function ProjectForm({
                         }
                     />
                 </div>
-                <div>
-                    <label className="text-xs font-bold uppercase">
+                <div className="dash-field">
+                    <label className="dash-label">
                         Live URL (leave blank if not public yet)
                     </label>
                     <input
@@ -60,10 +58,8 @@ export default function ProjectForm({
                 </div>
             </div>
 
-            <div>
-                <label className="text-xs font-bold uppercase">
-                    Description
-                </label>
+            <div className="dash-field">
+                <label className="dash-label">Description</label>
                 <textarea
                     rows="3"
                     style={panelStyles.inputField}
@@ -75,11 +71,9 @@ export default function ProjectForm({
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label className="text-xs font-bold uppercase">
-                        Tech Stack
-                    </label>
+            <div className="dash-form-grid-2">
+                <div className="dash-field">
+                    <label className="dash-label">Tech Stack</label>
                     <input
                         type="text"
                         placeholder="e.g. Laravel, React, Inertia.js"
@@ -91,10 +85,8 @@ export default function ProjectForm({
                         }
                     />
                 </div>
-                <div>
-                    <label className="text-xs font-bold uppercase">
-                        Deployment
-                    </label>
+                <div className="dash-field">
+                    <label className="dash-label">Deployment</label>
                     <input
                         type="text"
                         placeholder="e.g. Live production site, In development"
@@ -108,17 +100,15 @@ export default function ProjectForm({
                 </div>
             </div>
 
-            <div>
-                <label className="text-xs font-bold uppercase block mb-2">
+            <div className="dash-field">
+                <label className="dash-label dash-label-block">
                     Skills demonstrated on this project
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="dash-form-grid-2">
                     {categories.map((cat) => (
                         <div key={cat.id}>
-                            <p className="text-xs text-gray-500 mb-1">
-                                {cat.name}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
+                            <p className="dash-cat-name">{cat.name}</p>
+                            <div className="dash-skill-chips">
                                 {cat.skills?.map((skill) => {
                                     const checked = (
                                         projectForm.data.skill_ids ?? []
@@ -126,19 +116,12 @@ export default function ProjectForm({
                                     return (
                                         <label
                                             key={skill.id}
-                                            className="text-xs px-2 py-1 rounded-full cursor-pointer border"
-                                            style={{
-                                                borderColor: checked
-                                                    ? "#d9ee60"
-                                                    : "#374151",
-                                                color: checked
-                                                    ? "#d9ee60"
-                                                    : "#9ca3af",
-                                            }}
+                                            className={`dash-skill-chip ${checked ? "is-checked" : ""
+                                                }`}
                                         >
                                             <input
                                                 type="checkbox"
-                                                className="hidden"
+                                                className="dash-skill-chip-input"
                                                 checked={checked}
                                                 onChange={() =>
                                                     toggleSkill(skill.id)
@@ -154,7 +137,7 @@ export default function ProjectForm({
                 </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="dash-check-row">
                 <input
                     type="checkbox"
                     id="is_featured"
@@ -163,12 +146,12 @@ export default function ProjectForm({
                         projectForm.setData("is_featured", e.target.checked)
                     }
                 />
-                <label htmlFor="is_featured" className="text-xs font-bold uppercase">
+                <label htmlFor="is_featured" className="dash-check-label">
                     Show in Featured Projects on the homepage
                 </label>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="dash-check-row">
                 <input
                     type="checkbox"
                     id="is_hobby"
@@ -177,12 +160,12 @@ export default function ProjectForm({
                         projectForm.setData("is_hobby", e.target.checked)
                     }
                 />
-                <label htmlFor="is_hobby" className="text-xs font-bold uppercase">
+                <label htmlFor="is_hobby" className="dash-check-label">
                     Hobby / side project (not commissioned client work)
                 </label>
             </div>
 
-            <div className="flex items-center">
+            <div className="dash-form-actions">
                 <button
                     type="submit"
                     style={panelStyles.primaryBtn}
@@ -191,8 +174,8 @@ export default function ProjectForm({
                     {projectForm.processing
                         ? "Saving..."
                         : editingProjectId
-                          ? "Update Project"
-                          : "Save Project"}
+                            ? "Update Project"
+                            : "Save Project"}
                 </button>
                 {editingProjectId && (
                     <button
