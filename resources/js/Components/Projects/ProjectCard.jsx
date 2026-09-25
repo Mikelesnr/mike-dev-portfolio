@@ -5,15 +5,25 @@ export default function ProjectCard({ project, onPreview, onReadMore }) {
     const isLive = Boolean(project.url);
     const skills = project.skills || [];
     const descriptionRef = useRef(null);
+    const skillsRef = useRef(null);
     const [isOverflowing, setIsOverflowing] = useState(false);
+    const [skillsOverflowing, setSkillsOverflowing] = useState(false);
 
     // Detect whether the description actually overflows 3 lines
     useEffect(() => {
         const el = descriptionRef.current;
         if (!el) return;
-        // scrollHeight > clientHeight means text is clipped by line-clamp
         setIsOverflowing(el.scrollHeight > el.clientHeight + 2);
     }, [project.description]);
+
+    // Detect whether the skills chips overflow their 2-row container
+    useEffect(() => {
+        const el = skillsRef.current;
+        if (!el) return;
+        setSkillsOverflowing(el.scrollHeight > el.clientHeight + 2);
+    }, [skills.length]);
+
+    const handleOpenDetail = () => onReadMore?.(project);
 
     return (
         <div className="project-info">
@@ -25,8 +35,8 @@ export default function ProjectCard({ project, onPreview, onReadMore }) {
                 </span>
                 <span
                     className={`project-type-badge ${project.is_hobby
-                            ? "project-type-hobby"
-                            : "project-type-client"
+                        ? "project-type-hobby"
+                        : "project-type-client"
                         }`}
                 >
                     {project.is_hobby ? "Hobby Project" : "Professional Build"}
@@ -41,6 +51,8 @@ export default function ProjectCard({ project, onPreview, onReadMore }) {
                     Personal project, not commissioned work — free to explore.
                 </p>
             )}
+
+            <br></br>
 
             {project.customers?.length > 0 && (
                 <p className="project-client">
@@ -57,26 +69,39 @@ export default function ProjectCard({ project, onPreview, onReadMore }) {
                 {project.description}
             </p>
 
-            {/* Only show this if the description is actually clipped */}
             {isOverflowing && (
                 <button
                     type="button"
                     className="project-readmore-btn"
-                    onClick={() => onReadMore?.(project)}
+                    onClick={handleOpenDetail}
                 >
                     Read more
                     <span aria-hidden="true"> →</span>
                 </button>
             )}
 
-            {/* ---------- Skill chips --------------------------------- */}
+            {/* ---------- Skill chips (2-row clamp) ------------------- */}
             {skills.length > 0 && (
                 <div className="project-skills">
-                    <div className="skill-card-projects">
+                    <div
+                        ref={skillsRef}
+                        className={`skill-card-projects is-clamped ${skillsOverflowing ? "is-overflowing" : ""
+                            }`}
+                    >
                         {skills.map((skill) => (
                             <SkillTag key={skill.id} skill={skill} />
                         ))}
                     </div>
+                    {skillsOverflowing && (
+                        <button
+                            type="button"
+                            className="project-skills-more"
+                            onClick={handleOpenDetail}
+                        >
+                            + more
+                            <span aria-hidden="true"> →</span>
+                        </button>
+                    )}
                 </div>
             )}
 

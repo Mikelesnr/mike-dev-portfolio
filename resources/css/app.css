@@ -4160,6 +4160,60 @@ a:hover {
     transform: translateX(2px);
 }
 
+/* ---------- Project card skills (2-row clamp) ----------------------- */
+.project-skills {
+    position: relative;
+    margin: 4px 0 14px;
+}
+
+/* Always-clamped chips container — max 2 full rows */
+.skill-card-projects.is-clamped {
+    /* 2 full rows (26px each) + gap (6px) + 8px safety = 66px */
+    max-height: 66px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Fade-out gradient — shorter, and only when there's real overflow.
+   Placed tightly at the bottom edge so it doesn't eat into row 2. */
+.skill-card-projects.is-clamped.is-overflowing::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 12px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--bg-raised) 95%
+    );
+    pointer-events: none;
+}
+
+/* "+ more →" button — same visual language as Read more */
+.project-skills-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    margin-top: 6px;
+    background: transparent;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    cursor: pointer;
+    transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.project-skills-more:hover {
+    color: var(--brass-strong);
+    transform: translateX(2px);
+}
+
 /* ==========================================================================
    Large screens
    ========================================================================== */
