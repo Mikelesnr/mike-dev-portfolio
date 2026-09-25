@@ -1,0 +1,44 @@
+/* ==========================================================================
+   sections/projects.css — Projects section (Home featured + shell)
+   ========================================================================== */
+
+.projects-section {
+    background-color: transparent;
+    margin: 10px auto 15px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    width: 100%;
+    margin: 0 auto;
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+}
+
+.featured-grid {
+    max-width: 1200px;
+}
+
+/* ---------- See All Projects CTA --------------------------------------- */
+.projects-footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-with-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-with-arrow .btn-arrow {
+    display: inline-block;
+    transition: transform 0.3s var(--ease);
+}
+
+.btn-with-arrow:hover .btn-arrow {
+    transform: translateX(4px);
+}

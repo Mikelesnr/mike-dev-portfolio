@@ -1,0 +1,99 @@
+/* ==========================================================================
+   sections/hero.css — Hero section on Home
+   ========================================================================== */
+
+.hero {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    min-height: 380px;
+    align-items: center;
+}
+
+.into-container,
+.profile-image-container {
+    background-color: transparent;
+    width: 40%;
+    padding: 16px;
+    text-align: center;
+    height: auto;
+    align-content: center;
+    margin: 5%;
+}
+
+.into-container {
+    text-align: left;
+}
+
+.myh1,
+.into-container h2,
+.into-container p {
+    padding: 4px 0;
+}
+
+.into-container p {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+}
+
+.hero-tagline {
+    font-family: var(--font-body) !important;
+    font-size: 16px !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    color: var(--ink-muted) !important;
+    max-width: 46ch;
+    margin-top: 12px !important;
+    margin-bottom: 4px !important;
+}
+
+.into-container h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink-muted);
+    font-family: var(--font-body);
+}
+
+.myh1 {
+    font-size: 58px;
+    line-height: 1.05;
+    color: var(--ink);
+}
+
+.profile-image {
+    border-radius: var(--radius-lg);
+    max-width: 78%;
+    margin: auto;
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ---------- Timezone badge --------------------------------------------- */
+.timezone-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1;
+    color: var(--moss);
+    border: 1px solid var(--moss-soft);
+    background-color: var(--moss-soft);
+    border-radius: 999px;
+    padding: 6px 14px;
+    margin: 12px 0 16px;
+    width: auto !important;
+}
+
+.timezone-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--moss);
+    flex-shrink: 0;
+    display: inline-block;
+}

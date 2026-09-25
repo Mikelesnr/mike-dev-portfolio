@@ -1,0 +1,130 @@
+/* ==========================================================================
+   sections/customers.css — Customers + values grid + CTA banner
+   ========================================================================== */
+
+/* ==========================================================================
+   Values grid (Why Choose Me)
+   ========================================================================== */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+}
+
+.value-card-wrap {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.value-card-wrap > .value-card {
+    flex: 1;
+}
+
+/* ---------- CTA banner ------------------------------------------------- */
+.cta-banner {
+    position: relative;
+    overflow: hidden;
+    background: var(--grad-cta);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 48px 32px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 8px;
+}
+
+.cta-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.12) 50%,
+        transparent 70%
+    );
+    background-size: 250% 100%;
+    animation: cta-shimmer 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes cta-shimmer {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -100% 0;
+    }
+}
+
+.cta-banner h3 {
+    position: relative;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+}
+
+.cta-banner p {
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 46ch;
+    margin: 0 auto 24px;
+}
+
+.cta-banner .btn,
+.cta-banner .hire-btn {
+    position: relative;
+    background-color: #FFFFFF;
+    color: var(--brass);
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    display: inline-block;
+    text-decoration: none;
+    transition:
+        transform 0.2s var(--ease),
+        box-shadow 0.2s var(--ease);
+}
+
+.cta-banner .btn:hover,
+.cta-banner .hire-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Customers grid
+   ========================================================================== */
+
+.customers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+}
+
+.customer-card-wrap {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.customer-card-wrap > .customer-card {
+    flex: 1;
+}

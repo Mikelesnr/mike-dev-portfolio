@@ -96,6 +96,22 @@ const NavBar = () => {
                                 className="nav-link nav-logout"
                             >
                                 <span>Log Out</span>
+                                <svg
+                                    className="nav-logout-icon"
+                                    viewBox="0 0 16 16"
+                                    width="12"
+                                    height="12"
+                                    fill="none"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M6 3H3.5C2.67 3 2 3.67 2 4.5V11.5C2 12.33 2.67 13 3.5 13H6M10 5L13 8L10 11M13 8H6"
+                                        stroke="currentColor"
+                                        strokeWidth="1.4"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
                             </Link>
                         </li>
                     </>
