@@ -17,12 +17,12 @@ export default function Hero() {
                     </Reveal>
 
                     <Reveal delay={0.16}>
-                        <h2>Fullstack Web Developer, based in Harare, Zimbabwe</h2>
+                        <h2>Fullstack Developer &amp; AI Engineer</h2>
                     </Reveal>
 
                     <Reveal delay={0.22}>
                         <p className="hero-client-line">
-                            I build web products that grow small businesses —
+                            I build web products that grow businesses —
                             from the first line of code to the last deployment.
                         </p>
                     </Reveal>
@@ -31,7 +31,7 @@ export default function Hero() {
                         <p className="hero-tagline">
                             I design, build and ship full products end to end —
                             currently building an offline-first POS platform
-                            for small businesses across Zimbabwe and SADC.
+                            for businesses.
                         </p>
                     </Reveal>
 
