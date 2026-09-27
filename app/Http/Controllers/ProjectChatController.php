@@ -12,19 +12,23 @@ class ProjectChatController extends Controller
 {
     public function chat(Request $request)
     {
-        // Limit context spamming
+        Log::info('🤖 ChatBot Request Received', [
+            'input' => $request->all(),
+            'ip'    => $request->ip(),
+        ]);
+
         $request->validate([
             'message' => 'required|string|max:1000',
         ]);
 
         try {
-            // 1. Map categories and skills, evidenced by the real projects they were used on
+            // 1. Build database context from Categories and Skills
             $skillsAndCategories = Category::has('skills')
                 ->with('skills.projects')
                 ->get()
                 ->map(function ($category) {
                     $skills = $category->skills->map(function ($skill) {
-                        $usedOn = $skill->projects->pluck('name')->join(', ');
+                        $usedOn = $skill->projects->pluck('name')->filter()->join(', ');
                         return $usedOn
                             ? "{$skill->name} (used on: {$usedOn})"
                             : $skill->name;
@@ -34,14 +38,14 @@ class ProjectChatController extends Controller
                 })
                 ->join("\n");
 
-            // 2. Map projects using your exact database columns: name, techstack, deployment, description
+            // 2. Build database context from Projects
             $projects = Project::all()
                 ->map(function ($project) {
                     $details = "- **{$project->name}**: {$project->description} \n"
                         . "  * Stack: {$project->techstack}\n"
                         . "  * Deployment: {$project->deployment}";
 
-                    if ($project->url) {
+                    if (!empty($project->url)) {
                         $details .= "\n  * Live URL: {$project->url}";
                     }
 
@@ -49,7 +53,7 @@ class ProjectChatController extends Controller
                 })
                 ->join("\n\n");
 
-            // 3. Inject explicit truth context for Gemini
+            // 3. System Prompt setup
             $systemInstruction = "You are an AI assistant built into Michael Mwanza's portfolio website. Your purpose is to answer questions about Michael's technical skills, experience, and development projects. Use the following dynamic database data as your absolute source of truth:\n\n"
                 . "### Technical Skills Matrix (Categorized):\n{$skillsAndCategories}\n\n"
                 . "### Software Projects Inventory:\n{$projects}\n\n"
@@ -58,42 +62,61 @@ class ProjectChatController extends Controller
                 . "- Only provide and discuss information provided in the context directly above.\n"
                 . "- If a visitor asks about a skill, tool, or project that is missing from the data above, politely explain that it is not in Michael's current production stack.";
 
-            // 4. Send HTTP REST Request to Gemini 1.5 Flash API (Port 443)
-            $response = Http::withHeaders([
-                // Instead of env('GROQ_API_KEY')
-                'Authorization' => 'Bearer ' . config('services.groq.key'),
-                'Content-Type' => 'application/json',
-            ])->post("https://api.groq.com/openai/v1/chat/completions", [
-                'model' => 'llama-3.3-70b-versatile',
-                'messages' => [
-                    ['role' => 'system', 'content' => $systemInstruction],
-                    ['role' => 'user', 'content' => $request->input('message')]
+            $apiKey = config('services.gemini.key') ?? env('GEMINI_API_KEY');
+
+            if (!$apiKey) {
+                throw new \Exception('GEMINI_API_KEY is missing from environment configuration.');
+            }
+
+            // 4. Send HTTP REST Request to Gemini 2.5 Flash API
+            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+                'system_instruction' => [
+                    'parts' => [
+                        ['text' => $systemInstruction]
+                    ]
                 ],
-                'temperature' => 0.2,
-                'max_tokens' => 450,
+                'contents' => [
+                    [
+                        'role' => 'user',
+                        'parts' => [
+                            ['text' => $request->input('message')]
+                        ]
+                    ]
+                ],
+                'generationConfig' => [
+                    'temperature'     => 0.2,
+                    'maxOutputTokens' => 450,
+                ]
+            ]);
+
+            Log::info('🤖 Gemini API Response', [
+                'status' => $response->status(),
+                'body'   => $response->body(),
             ]);
 
             if ($response->failed()) {
-                throw new \Exception('Grok API Error Response: ' . $response->body());
+                throw new \Exception('Gemini API Error Response: ' . $response->body());
             }
 
             $result = $response->json();
-            $reply = $result['choices'][0]['message']['content'] ?? "I'm having a hard time loading the data right now.";
+            $reply  = $result['candidates'][0]['content']['parts'][0]['text'] ?? "I'm having a hard time loading the data right now.";
 
             return response()->json([
                 'success' => true,
-                'reply' => $reply,
+                'reply'   => $reply,
             ]);
-        } catch (\Exception $e) {
-            // This logs the real error to your storage/logs/laravel.log file
-            Log::error('❌ Portfolio AI Assistant failed: ' . $e->getMessage(), [
-                'trace' => $e->getTraceAsString()
+        } catch (\Throwable $e) {
+            Log::error('❌ Portfolio AI Assistant failed', [
+                'message' => $e->getMessage(),
+                'file'    => $e->getFile(),
+                'line'    => $e->getLine(),
+                'trace'   => $e->getTraceAsString(),
             ]);
 
-            // This sends the real error back to the chat box so you can see it
             return response()->json([
                 'success' => false,
                 'message' => 'DEBUG ERROR: ' . $e->getMessage(),
+                'file'    => $e->getFile() . ':' . $e->getLine(),
             ], 500);
         }
     }

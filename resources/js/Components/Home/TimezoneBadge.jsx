@@ -20,8 +20,8 @@ export default function TimezoneBadge() {
         <div className="timezone-badge">
             <span className="timezone-badge-dot"></span>
             <span>
-                My time is {time} CAT (UTC+2) in Harare — happy to work across
-                time zones
+                Currently {time} in Harare · UTC+2 — happy to work with you
+                wherever you are
             </span>
         </div>
     );
