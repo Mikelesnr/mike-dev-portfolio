@@ -147,7 +147,7 @@ export default function ChatWidget() {
                                 Portfolio Assistant
                             </h4>
                             <span className="chat-header-sub">
-                                Powered by Grok
+                                Powered by Gemini AI
                             </span>
                         </div>
                         <button
